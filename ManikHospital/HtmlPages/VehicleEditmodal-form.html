@@ -1,0 +1,215 @@
+﻿<div class="modal-header bg-light-blue">
+    <button type="button" class="close" ng-click="cancel()" style="color: white; font-size: 25px;">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <h4><i class="fa fa-refresh"></i>&nbsp;{{ModalUpdateMsg}}</h4>
+</div>
+<form name="form.userForm" ng-submit="UpdateRecord()" class="form-horizontal" novalidate >
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Contact</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="userForm.eContactID">
+                    <option value="0" ng-selected="true">Select Contact</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddContact" value="{{dd.ContactID}}">{{dd.FirstName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Stock No</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eStockNo" placeholder="Enter Stock No" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Made By</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="userForm.eMakerID">
+                    <option value="0" ng-selected="true">Select Maker</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddMake" value="{{dd.MakerID}}" ng-selected="dd.MakerID == userForm.eMakerID">{{dd.Make}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Model Name</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="userForm.eModelID">
+                    <option value="0" ng-selected="true">Select Model Name</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddModel" value="{{dd.ModelID}}" ng-selected="dd.ModelID == userForm.eModelID">{{dd.ModelName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Color</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="userForm.eColorID">
+                    <option value="0" ng-selected="true">Select Color</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddColor" value="{{dd.ColorID}}" ng-selected="dd.ColorID == userForm.eColorID">{{dd.ColorName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Fuel Type</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="userForm.eFuelTypeID">
+                    <option value="0" ng-selected="true">Select Fuel Type</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddFuelType" value="{{dd.FuelTypeID}}" ng-selected="dd.FuelTypeID == use">{{dd.FuelType1}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Body Style</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="userForm.eBodyStyleID">
+                    <option value="0" ng-selected="true">Select Body Style</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddBodyStyle" value="{{dd.BodyStyleID}}">{{dd.BodyStyle1}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Transmission</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="userForm.eTransmissionID">
+                    <option value="0" ng-selected="true">Select Transmission</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddTransmission" value="{{dd.TransmissionID}}">{{dd.Transmission1}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Cylender No</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="userForm.eCylinderID">
+                    <option value="0" ng-selected="true">Select Cylender No</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddCylender" value="{{dd.CylenderID}}">{{dd.CylenderNo}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Mileage</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eMileage" placeholder="Enter Mileage" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Engine No</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eEngineNo" placeholder="Enter Engine No" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Chasis No</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eChasisNo" placeholder="Enter Chasis No" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Purchase Date</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.ePurchaseDate" placeholder="Enter Purchase Date" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Purchase Amount</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.ePurchaseAmount" placeholder="Enter Purchase Amount" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Purchase Notes</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.ePurchaseNotes" placeholder="Enter Purchase Notes" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Purchase Status</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.ePurchaseStatus" placeholder="Enter Purchase Status" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Purchase Number</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.ePurchaseNumber" placeholder="Enter Purchase Number" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Purchase City</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.ePurchaseCity" placeholder="Enter Purchase City" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Purchase State</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.ePurchaseState" placeholder="Enter Purchase State" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Holder</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eHolder" placeholder="Enter Holder" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Holder Contact</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eHolderContact" placeholder="Enter Holder Contact" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Other Notes</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eOtherNotes" placeholder="Enter Other Notes" required>
+            </div>
+        </div>
+    <!--    <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Status</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eStatus" placeholder="Enter Status" required>
+            </div>
+        </div>
+    <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">{{Picture1}}</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eField1" placeholder="Enter {{Field1Name}}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">{{Picture2}}</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eField1" placeholder="Enter {{Field1Name}}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">{{Picture3}}</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eField1" placeholder="Enter {{Field1Name}}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">{{Picture4}}</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eField1" placeholder="Enter {{Field1Name}}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">{{Picture5}}</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eField1" placeholder="Enter {{Field1Name}}" required>
+            </div>
+        </div>-->
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.Field1.$dirty && userForm.Field1.$invalid">
+            <i class="fa fa-refresh"></i>&nbsp;Update</button>
+        <button class="btn btn-danger" ng-click="cancel()"><i class="fa fa-close"></i>&nbsp;Cancel</button>
+    </div>
+</form>

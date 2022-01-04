@@ -1,0 +1,95 @@
+﻿@model MedicalStore.Models.clsPatientDischarge
+@{
+    ViewBag.Title = "Indoor Patient Discharge";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Indoor Patient</li>
+    <li>@Html.ActionLink("List - Indoor Patient", "Index")</li>
+    <li>@Html.Raw("Indoor Patient Discharge")</li>
+</ol>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Indoor Patient</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()                                     
+                        
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.PatientID) *</label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownList("PatientID", ViewBag.DdPatient as SelectList, "Select Patient", new { @class = "form-control select2", @disabled="disabled" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.DischargeDate) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.DischargeDate, "{0:MM/dd/yyy}", new { @Value = DateTime.Now.Date.ToString("MM/dd/yyyy"), id = "Expensesdatepicker", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Follow) </label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Follow, new {  @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.Follow, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Remarks) </label>
+                                <div class="col-sm-6">
+                                    @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div> 
+                         if(ViewBag.btnState == "none")
+                         {
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right"></label>
+                                <div class="col-sm-6">
+                                     Your Remaining Amount is : <b>@ViewBag.RemainBalance</b> &nbsp;&nbsp;  <small style="color:red">you can't discharge this patient</small>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        <div class="box-footer col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" name="submit1" style="display:@ViewBag.btnState;" value="Save" class="btn btn-info" />
+                                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Select2 -->
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>

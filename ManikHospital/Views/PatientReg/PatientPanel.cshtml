@@ -1,0 +1,95 @@
+﻿@model MedicalStore.Models.clsPatientPanel
+
+@{
+    ViewBag.Title = "Patient Panel";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Patient Panel</li>
+    <li>@Html.ActionLink("List - Patient Panel", "Index")</li>
+    <li>@Html.Raw("Patient Panel")</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Patient Panel</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()                                     
+                    @Html.HiddenFor(model => model.PanelID)
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PatientID) *</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("PatientID", ViewBag.DdPatient as SelectList, "Select Patient", new { @class = "form-control select2", @disabled = "disabled", @style = "background-color:white !important;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.OrganizationID) *</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("OrganizationID", ViewBag.DdOrganization as SelectList, "Select Organization", new { @class = "form-control select2" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PanelLevel) *</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("PanelLevel", new List<SelectListItem>() {
+                                    new SelectListItem() { Text = "Junior", Value = "Junior"},
+                                    new SelectListItem() { Text = "Senior", Value = "Senior"}
+                                }, new { @class="form form-control select2" })
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.LimitAmount) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.LimitAmount, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LimitAmount, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="box-body col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Services) </label>
+                            <div class="col-sm-8">
+                                @Html.TextAreaFor(model => model.Services, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="box-footer col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" name="submit1" value="Save" class="btn btn-info" />
+                                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Select2 -->
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>

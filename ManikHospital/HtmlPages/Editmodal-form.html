@@ -1,0 +1,21 @@
+﻿<div class="modal-header bg-light-blue">
+    <button type="button" class="close" ng-click="cancel()" style="color: white; font-size: 25px;">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <h4><i class="fa fa-refresh"></i>&nbsp;{{ModalUpdateMsg}}</h4>
+</div>
+<form name="form.userForm" ng-submit="UpdateRecord()" class="form-horizontal" novalidate >
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">{{Field1Name}}</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.Field1" placeholder="Enter {{Field1Name}}" required> 
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.Field1.$dirty && userForm.Field1.$invalid">
+            <i class="fa fa-refresh"></i>&nbsp;Update</button>
+        <button class="btn btn-danger" ng-click="cancel()"><i class="fa fa-close"></i>&nbsp;Cancel</button>
+    </div>
+</form>

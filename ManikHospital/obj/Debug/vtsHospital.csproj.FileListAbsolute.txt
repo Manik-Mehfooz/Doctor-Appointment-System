@@ -1,0 +1,6 @@
+D:\Mudasir Data\vtsHospital\vtsHospital\bin\vtsHospital.dll
+D:\Mudasir Data\vtsHospital\vtsHospital\bin\vtsHospital.pdb
+D:\Mudasir Data\vtsHospital\vtsHospital\obj\Debug\RdlCompile.cache
+D:\Mudasir Data\vtsHospital\vtsHospital\obj\Debug\RdlCompile.compiled
+D:\Mudasir Data\vtsHospital\vtsHospital\obj\Debug\vtsHospital.dll
+D:\Mudasir Data\vtsHospital\vtsHospital\obj\Debug\vtsHospital.pdb

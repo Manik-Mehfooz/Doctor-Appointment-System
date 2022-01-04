@@ -1,0 +1,26 @@
+﻿.bArea {
+    height:60px !important;
+}
+.errorSize {
+    font-size:11px;
+    font-weight:bold;
+}
+@media screen and (max-width: 766px) {
+    .bArea {
+        height: 80px !important;
+    }
+}
+@media screen and (max-width: 300px) {
+    .errorSize {
+        font-size:8px;
+    }
+}
+.btnLarge {
+    font-size:22px;
+}
+.btnFields {
+    width: 50px; 
+    text-align:center;
+}
+
+

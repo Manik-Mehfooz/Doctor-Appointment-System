@@ -1,0 +1,175 @@
+﻿@model MedicalStore.Models.clsInvoiceMaster
+@using MedicalStore.Models;
+@using vtsMMC.Models;
+
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Invoice</li>
+    <li>@Html.ActionLink("List", "Index")</li>
+    <li>@Html.Raw("Invoice New")</li>
+</ol>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Add Information</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()                                         
+                        
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PatientID) *</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("PatientID", ViewBag.DdPatient as SelectList, "Select Patient", new { @class = "form-control select2" })
+                                @Html.ValidationMessageFor(model => model.PatientID, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.DoctorID) *</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("DoctorID", ViewBag.DdDoctor as SelectList, "Select Doctor Name", new { @class = "form-control  select2", @onChange = "this.form.submit();" })
+                                @Html.ValidationMessageFor(model => model.DoctorID, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.InvoiceNumber) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.InvoiceNumber, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.InvoiceNumber, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PatientName) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.PatientName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PatientName, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.ContactNo) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ContactNo, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.DepositeAmount) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.DepositeAmount, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DepositeAmount, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Discount) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Discount, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Discount, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.InvoiceDate) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.InvoiceDate, "{0:MM/dd/yyy}", new { id = "Enterdatepicker", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.InvoiceDate, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="box-footer col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" name="btnType" value="Save Invoice" class="btn btn-sm btn-info" />
+                                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="box-body col-md-12 col-sm-12 bArea" style="border-bottom: 1px solid #ccc; height: 13px !important;">
+                    </div>
+                    if (Convert.ToInt32(Session["InvoiceID"]) > 0)
+                    {
+                    <table class="table table-bordered">
+                        <tr style="background-color: #ddc">
+                            <th style="width: 230px;">Test Name</th>
+                            <th style="width: 230px;">Test Charges</th>
+                            <th style="width: 100px;">Doctor Fee</th>
+                            <th style="width: 60px;">Fee Amount</th>
+                        </tr>
+                        <tr>
+                            <td>@Html.DropDownList("TestID", ViewBag.DdTestName as SelectList, "Select Test Name", new { @class = "form-control select2", style = "width:100%;", @onChange = "this.form.submit();" })</td>
+                            <td>@Html.TextBox("Charges", null, new { @class = "form-control", style = "width:100%;", @Value = @ViewBag.Charges, @readonly = "true" })</td>
+                            <td>@Html.DropDownList("DoctorFeeID", ViewBag.DdDoctorFee as SelectList, "Select Doctor Fee", new { @class = "form-control select2", style = "width:100%;", @onChange = "this.form.submit();" })</td>
+                            <td>@Html.TextBox("FeeAmount", null, new { @class = "form-control", style = "width:100%;", @Value = @ViewBag.FeeAmount, @readonly = "true" })</td>
+                        </tr>
+                    </table>
+                    <div class="text-center">
+                        <input type="submit" name="btnType" value="Add Detail" class="btn btn-sm btn-info" />
+                    </div>
+                        
+                    <table class="table table-bordered">
+                        @if (ViewBag.InvoiceDetailList != null)
+                        {
+                            <tr style="background-color: #ddc;">
+                                <th style="width: 100px;" class="text-center">Test Name</th>
+                                <th style="width: 100px;" class="text-center">Test Fees</th>
+                                <th style="width: 60px;" class="text-center">Doctor Fee</th>
+                                <th style="width: 60px;" class="text-center">Fee Amount</th>
+                            </tr>
+                            foreach (var item in (IEnumerable<clsInvoiceDetail>)ViewBag.InvoiceDetailList)
+                            {
+                            <tr>
+                                <td class="text-center">@item.TestName</td>
+                                <td class="text-center">@item.Charges</td>
+                                <td class="text-center">@item.DoctorFee</td>
+                                <td class="text-center">@item.FeeAmount</td>
+                            </tr>
+                            }
+                        }
+                    </table> 
+                    <div class="box-footer col-xs-12 text-center">
+                        <div class="form-group">
+                            <input type="submit" name="btnType" value="Complete Invoice" class="btn btn-info" />
+                            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Select2 -->
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>

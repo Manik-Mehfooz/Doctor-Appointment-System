@@ -1,0 +1,103 @@
+﻿@model MedicalStore.Models.clsDiagnosticTest
+
+@{
+    ViewBag.Title = "Diagnostic Test";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight:bold;">Diagnostic Test</li>
+    <li>@Html.ActionLink("Diagnostic Test List", "Index")</li>
+    <li>@Html.Raw("Edit Diagnostic Test")</li>
+</ol>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Information</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.TestID)
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.TestType) *</label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownListFor(model => model.TestType, new List<SelectListItem>
+                                    {
+                                        new SelectListItem() {Text = "X-Ray", Value="X-Ray"},
+                                        new SelectListItem() {Text = "Lab", Value="Lab"},
+                                        new SelectListItem() {Text = "Ultra Sound", Value="Ultra Sound"}
+                                    },"Select Test Type", new { @class = "form-control select2" })  
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.TestType, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.TestName) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.TestName, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.TestName, null, new { @class = "text-danger" })
+                                    <span class="text-danger">@ViewBag.ErrorMessage</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.TestGroup) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.TestGroup, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.TestGroup, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Charges) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Charges, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.Charges, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" value="Update" class="btn btn-info" />
+                                    @Html.ActionLink("Cancel", "Index",null, new { @class="btn btn-danger"})
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Select2 -->
+	<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+	<script type="text/javascript">
+    		$(function () {
+       			//Initialize Select2 Elements
+        		$(".select2").select2();
+   	 	});
+	</script>

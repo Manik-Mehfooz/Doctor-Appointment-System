@@ -1,0 +1,232 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<MedicalStore.Models.clsPatientReg>
+
+@{
+    ViewBag.Title = "Indoor Patient";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+@*<ol class="breadcrumb">
+    <li style="font-weight: bold;">Indoor Patient</li>
+    <li>@Html.Raw("List - Indoor Patient")</li>
+    <li>@Html.ActionLink("Add - Indoor Patient", "AddNew")</li>
+</ol>*@
+
+
+<ul class="breadcrumb-bg">
+    <li><a href="../../PatientReg/Index"><span class="fa fa-home"></span> List - Indoor Patient</a> </li>   
+    <li><a href="../../PatientReg/AddNew"> <span class="fa fa-plus"></span> Add - Indoor Patient</a> </li>    
+    <li><a href="../../PatientReg/SearchPatient"> <span class="fa fa-search"></span> Search Patient</a> </li>
+</ul>
+
+<script src="~/JSFiles/JSPatientReg.js"></script>
+<div data-ng-app="modPatientReg">
+    <div data-ng-controller="ctrlPatientReg" data-ng-init="GetAllData()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <div class="col-xs-12" style="padding-left: 0px;">
+                            <div class="btn-group pull-left">
+                                <select ng-model="itemsPerPage" class="form-control input-sm">  
+                                    <option value="20">10</option>                                 
+                                    <option value="20">20</option>                                    
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="40">50</option>
+                                    <option value="40">100</option>                                   
+                                </select>
+                            </div>
+                            <div class="btn-group pull-right">
+                                <input type="text" ng-model="txtSearch" ng-click="currentPage=0" class="form-control input-sm" placeholder="Search" />
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body" ng-show="CheckSH">
+                        <pre><i class="fa fa-spinner fa-spin fa-lg"></i>  Loading...</pre>
+                    </div>
+                    <div class="box-body text-left table-responsive no-padding" ng-show="!CheckSH">
+                        <table class="table table-condensed table-bordered table-striped margin-left ">
+                            <tr>
+                                <th>Doctor Name</th>
+                                <th>MR #</th>
+                                <th>Patient Name</th>
+                                @*<th>Diagnosis</th>*@
+                                <th>Admission Date</th>
+                                <th class="btnFields">@Html.DisplayName("Room Allot")</th>
+                                <th class="btnFields">@Html.DisplayName("Pharmacy")</th>
+                                <th class="btnFields">@Html.DisplayName("New Pharmacy")</th>
+                                <th class="btnFields">@Html.DisplayName("Deposit")</th>
+                                @*<th class="btnFields">@Html.DisplayName("Organization")</th>*@
+                                <th class="btnFields" >@Html.DisplayName("Actions")</th>
+                                @*<th class="btnFields">@Html.DisplayName("Edit")</th>*@
+                                @*<th class="btnFields">@Html.DisplayName("Profile")</th>*@
+                                <th class="btnFields">@Html.DisplayName("Test")</th>
+                                <th class="btnFields">@Html.DisplayName("Payment")</th>
+                                <th class="btnFields">@Html.DisplayName("Report")</th>
+                                <th class="btnFields">@Html.DisplayName("Surgery")</th>
+                                <th class="btnFields">@Html.DisplayName("DC")</th>
+                                
+                                @*<th class="btnFields">@Html.DisplayName("Delete")</th>*@
+                                
+                                @*<th class="btnFields">@Html.DisplayName("Print")</th>*@
+                            </tr>
+                            <tr ng-repeat="B in alldata | filter:txtSearch | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage"  > @*data-ng-class="(B.IsDischarge) ? 'paginationclass bg-white' : 'paginationclass DischargeColor'"*@
+                                <td>{{B.DoctorName}}</td>
+                                <td>{{B.PatientRegNo}}</td>
+                                <td>{{B.FirstName}} {{B.LastName}}</td>
+                                @*<td>{{B.Diagnosis}}</td>*@
+                                <td>{{B.AdmissionDate.replace('/Date(','').replace(')/','') | date:"dd MMM, yyyy"}}</td>
+                                
+                                <td class="btnFields">
+                                    <a data-tooltip="Alloted Room" data-ng-hide="B.IsDischarge" data-ng-click="showForm(B.PatientID,'AllotedRoom',B)">
+                                        <span class="fa fa-bed btnLarge text-info"></span>
+                                        @*<img src="~/images/bed24x24.png" />*@
+                                    </a>
+                                </td>
+                                <td class="btnFields">
+                                    <a data-tooltip="Pharmacy" data-ng-hide="B.IsDischarge || B.PatientType == 'Temporary'"  href="../PatientReg/IndoorPatientMedicine/{{B.PatientID}}"><img src="~/images/medicine24x24.png" /></a>
+                                </td>
+                                 <td class="btnFields">
+                                    <a data-tooltip="New Pharmacy" data-ng-hide="B.IsDischarge || B.PatientType == 'Temporary'"  href="../PatientReg/PatientOperationArragement/{{B.PatientID}}"><img src="~/images/medicine24x24.png" /></a>
+                                </td>
+                                <td class="btnFields">
+                                    <a data-tooltip="Deposit Slip" data-ng-hide="B.IsDischarge"  href="../PatientReg/PrintDepositSlip/{{B.PatientID}}"><img src="~/images/slip24x24.png" /> </a>
+                                </td>
+                               @* <td class="btnFields">
+                                    <a data-tooltip="Organization"  data-ng-hide="B.PatientCategory == 'Private'" href="../PatientReg/PatientPanel/{{B.PatientID}}"><span class="fa fa-link text-info"></span></a>
+                                </td>*@
+                                <td class="btnFields">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle " type="button" data-toggle="dropdown">
+                                            <span class="fa fa-list"></span>
+   
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a data-tooltip="Edit"  data-ng-hide="B.IsDischarge" href="../PatientReg/Edit/{{B.PatientID}}"><span class="fa fa-edit text-info"></span>Edit</a></li>
+                                            <li><a href="#" data-tooltip="View" data-ng-click="showForm(B.PatientID,'View',B)">
+                                                <span class="fa fa-eye text-info"></span>View</a></li>
+                                            <li><a href="#"  data-ng-hide="B.IsDischarge"  data-tooltip="Delete" onclick="funDelete(this)" data-toggle="modal" data-target="#myModal" id="{{B.PatientID}}">
+                                                <span class="fa fa-trash text-danger"></span>Delete</a></li>
+                                        </ul>
+                                    </div> 
+                                </td>
+
+                                <td class="btnFields">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                           <span class="fa fa-list"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a data-tooltip="Add Patient Tests"  data-ng-hide="B.IsDischarge" href="../PatientReg/Test/{{B.PatientID}}"><span class="fa fa-hospital-o text-info"></span>Add Test</a></li>
+                                            <li>
+                                                <a data-tooltip="View Patient Investigation Test" href="#" data-ng-click="showForm(B.PatientID,'PatientTest',B)">
+                                                    <span class="fa fa-eye text-info"></span> View Tests
+                                                </a>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </td>
+                                <td class="btnFields">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <span class="fa fa-list"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a data-tooltip="Add Patient Payments"  data-ng-hide="B.IsDischarge" href="../PatientReg/Payment/{{B.PatientID}}"><span class="fa fa-hospital-o text-info"></span>Add Payments</a></li>
+                                            <li>
+                                                <a data-tooltip="View Patient Payments" href="#" data-ng-click="showForm(B.PatientID,'PatientPayments',B)"><span class="fa fa-eye text-info"></span>View Payments
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </td>
+
+                                <td class="btnFields">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle " type="button" data-toggle="dropdown">
+                                            @*<span class="fa fa-print"></span>*@
+                                            <img src="~/images/medical-history24x24.png" />
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                           @* <li><a href="../PatientReg/PrintDepositSlip/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><span class="fa fa-print text-info"></span>Deposit Slip</a></li>*@
+                                            <li><a href="../PatientReg/PrintReport/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><span class="fa fa-print text-info"></span>Discharge Billing</a></li>
+                                            <li><a href="../PatientReg/PrintDischargeSummary/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><span class="fa fa-print text-info"></span>Discharge Summary</a></li>
+                                            <li><a href="../PatientReg/PrintPatientMidicine/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><span class="fa fa-print text-info"></span>Patient Medicine</a></li>
+                                            <li><a href="../PatientReg/PrintPatientTests/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><span class="fa fa-print text-info"></span>Patient Tests</a></li>
+
+                                        </ul>
+                                    </div> 
+                                </td>
+
+                                <td class="btnFields">
+                                    <a data-tooltip="Surgery"  data-ng-hide="B.IsDischarge || B.PatientType == 'Temporary'" href="../PatientReg/Surgery/{{B.PatientID}}">@*<span class="fa fa-heartbeat btnLarge text-info"></span>*@
+                                         <img src="~/images/surgery24x24.png" />
+                                    </a>
+                                </td>
+                                <td class="btnFields">
+                                     <a data-tooltip="Discharge Patient"  data-ng-hide="B.IsDischarge" href="../PatientReg/Discharge/{{B.PatientID}}">@*<span class="fa fa-link btnLarge text-info"></span>*@
+                                         <img src="~/images/Discharge16x16.png" />
+                                     </a>
+                                 </td> 
+                                 
+                            </tr>
+                        </table>
+                        <br /><br />
+                        <div class="pagination-div">
+                            <ul class="pagination">
+                                <li ng-class="DisablePrevPage()">
+                                    <a href ng-click="prevPage()">« Prev</a>
+                                </li>
+                                <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                                    <a href="#">{{n+1}}</a>
+                                </li>
+                                @*<li ng-repeat="n in range()">
+                                            <a href="#" style="background-color:red !important;">{{n}}</a>
+                                        </li>*@
+                                <li ng-class="DisableNextPage()">
+                                    <a href ng-click="nextPage()">Next »</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<script>
+    function funDelete(a) {
+        var id = $(a).attr("id");
+        $("#DRecord").attr("href", "../PatientReg/Delete/" + id);
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Alert</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="DRecord" class="btn btn-info">YES</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 

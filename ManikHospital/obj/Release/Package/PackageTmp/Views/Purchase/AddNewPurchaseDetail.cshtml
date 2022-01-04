@@ -1,0 +1,265 @@
+﻿@model MedicalStore.Models.clsPurchaseDetail
+
+@{
+    ViewBag.Title = "Purchase Medicine Detail";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Purchase Medicine Detail</li>
+    <li>@Html.ActionLink("List", "ViewProduct")</li>
+    <li>@Html.Raw("Invoice Detail")</li>
+</ol>
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Purchase Medicine</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.Label("Select Company") *</label>
+                                <div class="col-sm-4">
+                                    @Html.DropDownList("CompanyID", ViewBag.DdCompany as SelectList, "Select Company", new { onchange = "this.form.submit();", @class = "form-control select2" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        
+                        <div class="box-body text-left table-responsive no-padding">
+                            @if (ViewBag.List != null)
+                            {
+                                <table class="table-condensed table-bordered table-striped table-hover table-responsive margin-left " id="myList" style="width: 100%;">
+                                    <tr>
+                                        @Html.HiddenFor(model => model.ProductID)
+                                        <th>
+                                            @Html.DisplayName("Product Name")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Unit Price")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Quantity")
+                                        </th>
+                                        @*<th>
+                                            @Html.DisplayName("Mfg Date")
+                                        </th>*@
+                                        <th>
+                                            @Html.DisplayName("Expiry Date")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Batch#")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Disc%")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Disc")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("GST")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Amount")
+                                        </th>
+                                    </tr>
+
+                                    @foreach (var item in (IEnumerable<MedicalStore.Models.clsProduct>)ViewBag.List)
+                                    {
+                                        var CheckID = "Check" + item.ProductID;
+                                        var UnitPrice = "txtUnitPrice" + item.ProductID;
+                                        var Quantity = "txtQuantity" + item.ProductID;
+                                        var Discount = "txtDiscount" + item.ProductID;
+                                        var DiscountPercent = "txtDiscountPercent" + item.ProductID;
+                                        var GST = "txtGST" + item.ProductID;
+                                        var Total = "txtTotal" + item.ProductID;
+                                        var MfgDate = "txtMfgDate" + item.ProductID;
+                                        var ExpiryDate = "txtExpiryDate" + item.ProductID;
+                                        
+                                        <tr>
+                                            @Html.HiddenFor(modelItem => item.ProductID)
+                                            <td class="col-sm-2">
+                                                <input class="abc" name="CheckForAssign"  onclick="onChecked(this)" type="checkbox" id="@CheckID" value="@item.ProductID"  />
+                                                @Html.DisplayFor(modelItem => item.ProductName)
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.TextBoxFor(model => model.Price, new { id = @UnitPrice, @Value = @item.UnitPrice, type = "number", @class = "form-control" })
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.TextBoxFor(model => model.Quantity, new { onchange = "MyCalculate(this)", @Value = "0", type = "number", id = @Quantity, @class = "form-control" })
+                                            </td>
+                                            @*<td class="col-sm-2">
+                                                @Html.TextBoxFor(model => model.MfgDate, new { type = "date", @class = "form-control", id = @MfgDate })
+                                            </td>*@
+                                            <td class="col-sm-2">
+                                                @Html.TextBoxFor(model => model.ExpiryDate, new { type = "date", @class = "form-control", id = @ExpiryDate })
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.TextBoxFor(model => model.BatchNo, new { @class = "form-control" })
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.TextBox("DiscountPercent", null, new { onchange = "MyCalculate(this)", id = @DiscountPercent, @Value = "0", type = "number", @class = "form-control", name = "DiscounttPercent" })
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.TextBoxFor(model => model.Discount, new { onchange = "MyCalculate(this)", id = @Discount, @Value = "0.00", type = "number", @class = "form-control", @readonly="true", style="background-color:white;", name = "Discountt" })
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.TextBoxFor(model => model.GST, new { onchange = "MyCalculate(this)", id = @GST, @Value = "0.00", type = "number", @class = "form-control", name = "GSTT" })
+                                            </td>
+                                            <td>
+                                                @Html.TextBoxFor(model => model.Total, new { id = @Total, @Value = "0.00", @class = "form-control", @readonly="true", style="background-color:white;", name = "AMOUNT" })
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            }
+                            else
+                            {
+
+                            }
+                        </div>
+                        <br />
+                        <div class="box-footer col-xs-12">
+                            <div class="form-group">
+                                <div class="col-sm-12 text-center">
+                                    <input type="submit" name="AddDetail" value="Save" class="btn btn-info" style="padding: 8px 20px;" />
+                                    <input type="submit" name="Cancel" value="Cancel" class="btn btn-danger" style="padding: 8px 20px;" />
+                                    <input type="submit" name="Complete" value="Complete" class="btn btn-success" style="padding: 8px 20px;" />
+                                    @*@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default", style = "padding:8px 20px;" })
+                                     @Html.ActionLink("Complete", "Index", null, new { @class = "btn btn-default", style = "padding:8px 20px;" })*@
+                                </div>
+                            </div>
+                        </div>
+                        
+                    }
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Select2 -->
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+
+    var ListOfCheckedTextBoxes = "";
+    var mfg = "";
+    var exp = "";
+    function MyCalculate(myid) {
+        var getID = parseInt(myid.id.replace(/\D/g, ""), 10);
+        if (ListOfCheckedTextBoxes.includes(getID)) {
+            var price = document.getElementById("txtUnitPrice" + getID);
+            var quantity = document.getElementById("txtQuantity" + getID);
+            var discount = document.getElementById("txtDiscount" + getID);
+            var discountPercent = document.getElementById("txtDiscountPercent" + getID);
+            var gst = document.getElementById("txtGST" + getID);
+            var total = document.getElementById("txtTotal" + getID);
+            
+            var myGst = 0;
+            var myDiscount = 0;
+            var myDiscountPercent = 15;
+
+            if (quantity.value.length <= 0) {
+                quantity.value = 0;
+            }
+            if (discount.value.length <= 0 || discount.value == "0.00") {
+                discount.value = parseFloat("0");
+                myDiscount = 0;
+            }
+            else {
+                myDiscount = parseFloat(discount.value);
+                discount.value = parseFloat(myDiscount);
+            }
+
+            if (discountPercent.value.length <= 0 || discountPercent.value < 14) {
+                discountPercent.value = parseInt("15");
+                myDiscountPercent = 15;
+            }
+            else {
+                myDiscountPercent = parseInt(discountPercent.value);
+                discountPercent.value = parseInt(myDiscountPercent);
+            }
+
+            if (gst.value.length <= 0 || gst.value == "0.00") {
+                gst.value = parseFloat("0");
+                myGst = 0;
+            }
+            else {
+                myGst = parseFloat(gst.value);
+                gst.value = parseFloat(myGst);
+            }
+            if (total.value.length <= 0) {
+                total.value = parseFloat("0");
+            }
+
+
+            var MultiplyOfPriceQuantity = price.value * quantity.value;
+
+            // discount Calculation
+            var discountCal = (parseInt(MultiplyOfPriceQuantity) * parseInt(myDiscountPercent)) / 100;
+
+            discount.value = parseFloat(discountCal);
+
+            var MinusOfDiscount = MultiplyOfPriceQuantity - discountCal;
+
+            //var AddOfGSTDiscount = myGst + myDiscount;
+
+            var AddOfGST = myGst;
+            total.value = parseFloat(MinusOfDiscount + AddOfGST);
+
+        }
+    }
+    function onChecked(a) {
+
+        if (!ListOfCheckedTextBoxes.includes(a.value)) {
+            this.ListOfCheckedTextBoxes += a.value + ",";
+            var mfg = document.getElementById("txtMfgDate" + a.value);
+            var exp = document.getElementById("txtExpiryDate" + a.value);
+            
+            mfg.required = true;
+            exp.required = true;
+
+        }
+        else {
+            ListOfCheckedTextBoxes = ListOfCheckedTextBoxes.replace(a.value + ",", "");
+            var mfg = document.getElementById("txtMfgDate" + a.value);
+            var exp = document.getElementById("txtExpiryDate" + a.value);
+
+            mfg.required = false;
+            exp.required = false;
+        }
+        //alert(ListOfCheckedTextBoxes);
+
+    }
+
+
+    //$(document).ready(function () {
+    //    $("#myList").on('input', '.txtCal', function () {
+    //        var calculated_total_sum = 0;
+
+    //        $("#myList .Quantity").each(function () {
+    //            var get_textbox_value = $(this).val();
+    //            if ($.isNumeric(get_textbox_value)) {
+    //                calculated_total_sum += parseFloat(get_textbox_value);
+    //            }
+    //        });
+    //        $("#Total").html(calculated_total_sum);
+    //    });
+    //});
+
+</script>

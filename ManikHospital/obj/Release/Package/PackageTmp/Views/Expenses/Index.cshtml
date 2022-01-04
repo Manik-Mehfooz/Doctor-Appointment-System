@@ -1,0 +1,159 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<MedicalStore.Models.clsExpenses>
+
+@{
+    ViewBag.Title = "Expenses";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Expenses</li>
+    <li>@Html.Raw("Expenses List")</li>
+    <li>@Html.ActionLink("Add New Expenses", "AddNew")</li>
+</ol>
+<div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Expenses Information</h3>
+                        <div class="box-tools pull-right">
+                            <div class="has-feedback">
+                                @using (Html.BeginForm())
+                                {
+                                    <input type="text" id="myInput" class="form-control input-sm" onkeyup="myFunction()" placeholder="Search By Expenses" title="Type in a name">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body text-left table-responsive no-padding">
+                        <table class="table table-bordered" id="myTable">
+                            <tr>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ExpensesTypeID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ExpenseDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Amount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.GivenBy)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.GivenTo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Remarks)
+                                </th>
+                                <th class="btnFields">@Html.DisplayName("Edit")</th>
+                                <th class="btnFields">@Html.DisplayName("Delete")</th>
+                            </tr>
+                            @{
+                                var a = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                a++;
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ExpensesType)
+                                    </td>
+                                    <td>
+                                        @item.ExpenseDate.ToString("MM/dd/yyyy")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Amount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.GivenBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.GivenTo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Remarks)
+                                    </td>
+                                    <td class="btnFields">
+                                        @Html.ActionLink(" ", "Edit", new { id = item.ExpenseID }, new { @class = "fa fa-edit btnLarge text-info " })
+                                    </td>
+                                    <td class="btnFields">
+                                        <a href="#" class="fa fa-trash btnLarge text-danger" onclick="funDelete(this)" data-toggle="modal" data-target="#myModal" id="@item.ExpenseID"></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                    <div class="text-center">
+                        @{
+                            if (a == 0)
+                            {
+                            <b class="text-danger">No record found !</b>
+                            }
+                        }
+                    </div>
+                     <div style="float: right;">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+                    </div>
+                   @* <div class="box-footer clearfix" style="float: right;">
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </section>
+</div>
+
+<script>
+    function funDelete(a) {
+        var id = $(a).attr("id");
+        $("#DRecord").attr("href", "/Expenses/Delete/" + id);
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Alert</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="DRecord" class="btn btn-info">YES</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

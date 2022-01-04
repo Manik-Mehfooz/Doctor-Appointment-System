@@ -1,0 +1,75 @@
+﻿@model MedicalStore.Models.clsPurchaseReport
+
+@{
+    ViewBag.Title = "Purchase Report";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight:bold;">Purchase Report</li>
+    <li>@Html.ActionLink("DashBoard", "Index", "Users")</li>
+    
+</ol>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Purchase Report</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()                        
+                                              
+                        <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label text-right">@Html.Label("From Date")</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.FromDate, new { Value=ViewBag.fDate, id="Enterdatepicker", @class = "form-control" })
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label text-right">@Html.Label("To Date")</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.ToDate, new { Value=ViewBag.tDate, id="Updatedatepicker", @class = "form-control" })                                    
+                                </div>
+                            </div>
+                        </div>
+                         <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="box-footer col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" name="submit1" value="Print Report" class="btn btn-success" />                                    
+                                    @Html.ActionLink("Cancel","Index", "Users",null, new { @class="btn btn-danger"})
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

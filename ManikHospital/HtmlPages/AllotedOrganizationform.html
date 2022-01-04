@@ -1,0 +1,25 @@
+﻿<div class="modal-header bg-light-blue">
+    <button type="button" class="close" ng-click="cancel()" style="color: white; font-size: 25px;">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <h4><i class="fa fa-plus"></i>&nbsp;Allotment Patient Organization</h4>
+</div>
+<form name="form.userForm" ng-submit="AllotedOrganizationForm()" class="form-horizontal" novalidate>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Organization</label>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <select class="form-control" ng-model="form.userForm.OrganizationID" >
+                    <option value="0" ng-selected="OrganizationID == 0">Select Room</option> 
+                     <option style="display:none" value="">Select</option> 
+                    <option ng-repeat="dd in ddOrganizations"  ng-selected="dd.OrganizationID == OrganizationID" value="{{dd.OrganizationID}}">{{dd.Organization}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.Field1.$dirty && userForm.Field1.$invalid">
+            <i class="fa fa-plus"></i>&nbsp;Alloted Organization</button>
+        <button class="btn btn-danger" ng-click="cancel()"><i class="fa fa-close"></i>&nbsp;Cancel</button>
+    </div>
+</form>

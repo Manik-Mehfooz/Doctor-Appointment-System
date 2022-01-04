@@ -1,0 +1,227 @@
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.csprojResolveAssemblyReference.cache
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\MedicalStore.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\MedicalStore.pdb
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\Newtonsoft.Json.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.Helpers.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.Mvc.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.Razor.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\Newtonsoft.Json.xml
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.Helpers.xml
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.Mvc.xml
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.Razor.xml
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.xml
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.xml
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.dll
+C:\Users\Atif Hussain Bhatti\documents\visual studio 2012\Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.pdb
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\MedicalStore.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\MedicalStore.pdb
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\Microsoft.Web.Infrastructure.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\Newtonsoft.Json.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.Helpers.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.Mvc.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.Razor.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.WebPages.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\Newtonsoft.Json.xml
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.Helpers.xml
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.Mvc.xml
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.Razor.xml
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.WebPages.xml
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.xml
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.xml
+E:\Mudasir Data\MedicalStore\MedicalStore\obj\Debug\MedicalStore.csprojResolveAssemblyReference.cache
+E:\Mudasir Data\MedicalStore\MedicalStore\obj\Debug\MedicalStore.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\obj\Debug\MedicalStore.pdb
+D:\My Projects\Medical store\Project\MedicalStore\bin\MedicalStore.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\MedicalStore.pdb
+D:\My Projects\Medical store\Project\MedicalStore\bin\Microsoft.Web.Infrastructure.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\Newtonsoft.Json.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Net.Http.Formatting.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.Helpers.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.Http.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.Http.WebHost.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.Mvc.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.Razor.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.WebPages.Deployment.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.WebPages.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.WebPages.Razor.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\Newtonsoft.Json.xml
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Net.Http.Formatting.xml
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.Helpers.xml
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.Http.xml
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.Http.WebHost.xml
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.Mvc.xml
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.Razor.xml
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.WebPages.xml
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.WebPages.Deployment.xml
+D:\My Projects\Medical store\Project\MedicalStore\bin\System.Web.WebPages.Razor.xml
+D:\My Projects\Medical store\Project\MedicalStore\obj\Debug\MedicalStore.csprojResolveAssemblyReference.cache
+D:\My Projects\Medical store\Project\MedicalStore\obj\Debug\MedicalStore.dll
+D:\My Projects\Medical store\Project\MedicalStore\obj\Debug\MedicalStore.pdb
+D:\My Projects\Medical store\Project\MedicalStore\bin\Zen.Barcode.Core.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\Zen.Barcode.Design.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\Zen.Barcode.Web.dll
+D:\My Projects\Medical store\Project\MedicalStore\bin\Zen.Barcode.Web.Mvc.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\Zen.Barcode.Core.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\Zen.Barcode.Design.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\Zen.Barcode.Web.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\Zen.Barcode.Web.Mvc.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\obj\Debug\RdlCompile.cache
+E:\Mudasir Data\MedicalStore\MedicalStore\obj\Debug\RdlCompile.compiled
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\MedicalStore.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\MedicalStore.pdb
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\Microsoft.Web.Infrastructure.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\Newtonsoft.Json.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Net.Http.Formatting.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.Helpers.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.Http.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.Http.WebHost.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.Mvc.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.Razor.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.WebPages.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\Zen.Barcode.Core.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\Zen.Barcode.Design.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\Zen.Barcode.Web.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\Zen.Barcode.Web.Mvc.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\Newtonsoft.Json.xml
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Net.Http.Formatting.xml
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.Helpers.xml
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.Http.xml
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.Http.WebHost.xml
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.Mvc.xml
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.Razor.xml
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.WebPages.xml
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.xml
+D:\My_Projects\Latest\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.xml
+D:\My_Projects\Latest\MedicalStore\MedicalStore\obj\Debug\MedicalStore.csprojResolveAssemblyReference.cache
+D:\My_Projects\Latest\MedicalStore\MedicalStore\obj\Debug\RdlCompile.cache
+D:\My_Projects\Latest\MedicalStore\MedicalStore\obj\Debug\RdlCompile.compiled
+D:\My_Projects\Latest\MedicalStore\MedicalStore\obj\Debug\MedicalStore.dll
+D:\My_Projects\Latest\MedicalStore\MedicalStore\obj\Debug\MedicalStore.pdb
+D:\My_Projects\MedicalStore\MedicalStore\bin\MedicalStore.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\MedicalStore.pdb
+D:\My_Projects\MedicalStore\MedicalStore\bin\Microsoft.Web.Infrastructure.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\Newtonsoft.Json.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Net.Http.Formatting.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.Helpers.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.Http.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.Http.WebHost.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.Mvc.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.Razor.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Core.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Design.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Web.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Web.Mvc.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\Newtonsoft.Json.xml
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Net.Http.Formatting.xml
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.Helpers.xml
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.Http.xml
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.Http.WebHost.xml
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.Mvc.xml
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.Razor.xml
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.xml
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.xml
+D:\My_Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.xml
+D:\My_Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.csprojResolveAssemblyReference.cache
+D:\My_Projects\MedicalStore\MedicalStore\obj\Debug\RdlCompile.cache
+D:\My_Projects\MedicalStore\MedicalStore\obj\Debug\RdlCompile.compiled
+D:\My_Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.dll
+D:\My_Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.pdb
+D:\My Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.csprojResolveAssemblyReference.cache
+D:\My Projects\MedicalStore\MedicalStore\obj\Debug\RdlCompile.cache
+D:\My Projects\MedicalStore\MedicalStore\obj\Debug\RdlCompile.compiled
+D:\My Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\MedicalStore.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\MedicalStore.pdb
+D:\My Projects\MedicalStore\MedicalStore\bin\Microsoft.Web.Infrastructure.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\Newtonsoft.Json.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\PagedList.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\PagedList.Mvc.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Net.Http.Formatting.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.Helpers.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.Http.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.Http.WebHost.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.Mvc.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.Razor.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Core.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Design.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Web.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Web.Mvc.dll
+D:\My Projects\MedicalStore\MedicalStore\bin\PagedList.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\PagedList.Mvc.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\Newtonsoft.Json.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Net.Http.Formatting.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.Helpers.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.Http.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.Http.WebHost.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.Mvc.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.Razor.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.xml
+D:\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.xml
+D:\My Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.pdb
+D:\My_Projects\MedicalStore\MedicalStore\bin\PagedList.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\PagedList.Mvc.dll
+D:\My_Projects\MedicalStore\MedicalStore\bin\PagedList.xml
+D:\My_Projects\MedicalStore\MedicalStore\bin\PagedList.Mvc.xml
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\PagedList.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\PagedList.Mvc.dll
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\PagedList.xml
+E:\Mudasir Data\MedicalStore\MedicalStore\bin\PagedList.Mvc.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\MedicalStore.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\MedicalStore.pdb
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\Microsoft.Web.Infrastructure.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\Newtonsoft.Json.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\PagedList.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\PagedList.Mvc.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Net.Http.Formatting.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.Helpers.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.Http.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.Http.WebHost.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.Mvc.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.Razor.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Core.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Design.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Web.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\Zen.Barcode.Web.Mvc.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\PagedList.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\PagedList.Mvc.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\Newtonsoft.Json.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Net.Http.Formatting.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.Helpers.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.Http.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.Http.WebHost.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.Mvc.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.Razor.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Deployment.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\bin\System.Web.WebPages.Razor.xml
+D:\Projects\My Projects\MedicalStore\MedicalStore\obj\Debug\RdlCompile.cache
+D:\Projects\My Projects\MedicalStore\MedicalStore\obj\Debug\RdlCompile.compiled
+D:\Projects\My Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.dll
+D:\Projects\My Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.pdb
+D:\Projects\My Projects\MedicalStore\MedicalStore\obj\Debug\MedicalStore.csprojResolveAssemblyReference.cache

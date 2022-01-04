@@ -1,0 +1,473 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+
+    <link href="@Url.Content("~/Resources/bootstrap/css/bootstrap.min.css")" type="text/css" rel="stylesheet" />
+
+    <link href="~/Resources/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Theme style -->
+    <link href="~/Resources/dist/css/AdminLTE.min.css" rel="stylesheet" />
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="@Url.Content("~/Resources/plugins/select2/select2.min.css")" />
+
+    <link href="@Url.Content("~/Resources/dist/css/skins/skin-blue.min.css")" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="@Url.Content("~/Resources/bootstrap/css/MyCustomStyle.css")" />
+
+
+
+    <script src="@Url.Content("~/Resources/plugins/jQuery/jquery-2.2.3.min.js")" type="text/javascript"></script>
+
+    
+    <script src="~/External%20Links/angular.js"></script>
+    <script src="~/External%20Links/ui-bootstrap-tpls-0.9.0.js"></script>
+    <script src="@Url.Content("~/Resources/plugins/jQuery/jquery-2.2.3.min.js")" type="text/javascript"></script>
+    <style>
+        .datepicker{
+            padding:0px;
+        }
+        .datepicker tr td{
+            text-align:center;
+        }
+        .datepicker-days {
+            padding:4px;
+            height: 260px;
+        }
+        .datepicker-days tr td{
+            padding:2px 8px;
+        }
+                .datepicker-days tr td:hover {
+                    cursor:pointer;
+                }
+        .datepicker-switch{
+            text-align: center;
+        }
+
+        .datepicker-days .prev:hover, .next{
+            cursor: pointer
+        }
+        .treeview-menu > li {
+           border-left: 3px solid ;
+        }
+        .bg-black {
+           color: #fff;
+           background: #1e282c;
+           border-left: 3px solid #3c8dbc !important;
+        }
+        
+        .treeview-menu > li:hover{
+           color: #fff;
+           background: #1e282c;
+           border-left: 3px solid #3c8dbc;
+        }
+        
+        .modal-dialog {
+            width: 70%;
+        }
+        .DischargeColor {
+            background-color:#fa00002e !important;
+        }
+    </style>
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Header -->
+        <header class="main-header">
+
+            <!-- Logo -->
+            <a href="Index" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                @* <span class="logo-mini"><b>A</b>PL</span>*@
+                <!-- logo for regular state and mobile devices -->
+                @*<span class="logo-lg"><b>Al-Maida</b> M.S</span>*@
+                <span class="logo-lg">
+                    <img src="~/images/Maidah%20Medical%20Center%202%20Low.png" style="width: 130px; height: 50px" /></span>
+            </a>
+
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                @* <img src="@Url.Content("~/Resources/dist/img/user2-160x160.jpg")" class="user-image" alt="User Image">*@
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                @* <span class="hidden-xs">Welcome: &nbsp;&nbsp; @Session["UserName"]</span>*@
+                                <span>Welcome: &nbsp;&nbsp; @Session["UserName"]</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    @* <img src="@Url.Content("~/Resources/dist/img/user2-160x160.jpg")" class="img-circle" alt="User Image">*@
+
+                                    <p>
+                                        @Session["UserName"]
+
+                                        @*<small>Member since Nov. 2012</small>*@
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                @*<li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Followers</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Sales</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Friends</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </li>*@
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    @* <div class="pull-left">
+                                        <a href="/Users/ChangePwd" class="btn btn-default btn-flat">Change Password</a>
+                                    </div>*@
+                                    <div class="pull-right">
+                                        <a href="~/Users/Logout" class="btn btn-default btn-flat">Log out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel">
+                    @*<div class="pull-left image">
+                        <img src="@Url.Content("~/Resources/dist/img/user2-160x160.jpg")" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>Mr. Mudasir Hussain</p>
+                        <!-- Status -->
+                        <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                    </div>*@
+                </div>
+
+                <!-- search form (Optional) -->
+                @* <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>*@
+                <!-- /.search form -->
+
+                <!-- Sidebar Menu -->
+                @{
+                    var CompleteURL = Request.RawUrl.ToString();
+                    var URLList = CompleteURL.Split('/');
+                    var ActionName = URLList[0];
+                    var ControllerName = URLList[1]; 
+                
+                <ul class="sidebar-menu">
+                    <li class="header">Admin Operations</li>
+                    <!-- Optionally, you can add icons to the links -->
+
+                    <li class="@((ControllerName.Equals("Users") ? "active" : ""))">
+                        <a href="@Url.Action("Index", "Users")"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
+                    </li>
+
+
+                    <li class="@((ControllerName.Equals("DoctorFee") ? "active" : (ControllerName.Equals("DailyOPDToken") ? "active" :
+                    (ControllerName.Equals("Department") ? "active" : (ControllerName.Equals("Room") ? "active" : (ControllerName.Equals("PatientReg") ? "active" : "")))))))))">
+                        <a href="#"><i class="fa fa-h-square"></i><span>Pharmacy</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+
+                            <li class="@((ControllerName.Equals("Company") ?
+                    "active" : (ControllerName.Equals("ProductType") ? "active" : (ControllerName.Equals("Strength") ? "active" : (ControllerName.Equals("Product") ?
+                    "active" : (ControllerName.Equals("OpeningStock") ? "active" : (ControllerName.Equals("DiagnosticTest") ? "active" : "")))))))">
+                                <a href="#"><i class="fa fa-list "></i><span>Pharmacy Setting</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li class="@((ControllerName.Equals("Company") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Index", "Company")"><i class="fa fa-arrow-right "></i><span>Company</span></a>
+                                    </li>
+                                    <li class="@((ControllerName.Equals("ProductType") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Index", "ProductType")"><i class="fa fa-arrow-right "></i><span>Product Type</span></a>
+                                    </li>
+                                    <li class="@((ControllerName.Equals("Strength") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Index", "Strength")"><i class="fa fa-arrow-right "></i><span>Product Strength</span></a>
+                                    </li>
+                                    <li class="@((ControllerName.Equals("Product") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Index", "Product")"><i class="fa fa-arrow-right "></i><span>Product</span></a>
+                                    </li>
+                                    <li class="@((ControllerName.Equals("OpeningStock") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Index", "OpeningStock")"><i class="fa fa-arrow-right "></i><span>Opening Stock</span></a>
+                                    </li>
+                                    <li class="@((ControllerName.Equals("DiagnosticTest") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Index", "DiagnosticTest")"><i class="fa fa-arrow-right "></i><span>Diagnostic Test</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="@((ControllerName.Equals("Purchase") ? "active" : ""))">
+                                <a href="@Url.Action("Index", "Purchase")"><i class="fa fa-hospital-o "></i><span>Medicine Purchase</span></a>
+                            </li>
+                            <li class="@((ControllerName.Equals("Sales") ? "active" : ""))">
+                                <a href="@Url.Action("AddNew", "Sales")"><i class="fa fa-hospital-o "></i><span>Medicine Sale</span></a>
+                            </li>
+                            <li class="@((ControllerName.Equals("ProductReturn") ? "active" : ""))">
+                                <a href="@Url.Action("Index", "ProductReturn")"><i class="fa fa-hospital-o "></i><span>Medicine Return</span></a>
+                            </li>
+                            <li class="@((ControllerName.Equals("Stock") ? "active" : ""))">
+                                <a href="@Url.Action("Index", "Stock")"><i class="fa fa-database"></i><span>Stock Checking</span></a>
+                            </li>
+                            <li class="@((ControllerName.Equals("BarCodeImage") ? "active" : ""))">
+                                <a href="@Url.Action("DisplayBarCode", "BarCodeImage")"><i class="fa fa-barcode"></i><span>Medicine BarCode</span></a>
+                            </li>
+
+
+                            <li class="@((ControllerName.Equals("rptProfit") ? "active" : (ControllerName.Equals("rptDailySale") ? "active" : (ControllerName.Equals("rptMonthlySale") ? "active" : (ControllerName.Equals("rptExpenseReport") ? "active" : ""))))))))">
+                                <a href="#"><i class="fa fa-area-chart "></i><span>Reports</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li class="@((ControllerName.Equals("rptProfit") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Print", "rptProfit")"><i class="fa fa-usd"></i><span>Profit</span></a>
+                                    </li>
+                                    <li class="@((ControllerName.Equals("rptDailySale") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Print", "rptDailySale")"><i class="fa fa-shopping-cart "></i><span>Daily Sales</span></a>
+                                    </li>
+                                    <li class="@((ControllerName.Equals("rptMonthlySale") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Print", "rptMonthlySale")"><i class="fa fa-bar-chart "></i><span>Monthly Sales</span></a>
+                                    </li>
+
+                                    <li class="@((ControllerName.Equals("AdmitPatientSummary") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Print", "AdmitPatientSummary")"><i class="fa fa-money "></i><span>Patient Bill</span></a>
+                                    </li>
+
+                                    @*<li><a href="@Url.Action("Index", "Product")"><i class="fa fa-cart-plus "></i><span>Purchase</span></a></li>*@
+                                    <li class="@((ControllerName.Equals("MonthlyPurchase") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Print", "MonthlyPurchase")"><i class="fa fa-money "></i><span>Monthly Expenses</span></a>
+                                    </li>
+                                    @*<li><a href="@Url.Action("Index", "StoreInformation")"><i class="fa fa-bar-chart "></i><span>Pharma Wise Sale</span></a></li>*@
+                                    @*<li><a href="@Url.Action("Index", "Strength")"><i class="fa fa-database "></i><span>Stock IN / OUT</span></a></li>*@
+                                    <li class="@((ControllerName.Equals("rptExpenseReport") ? "bg-black" : ""))">
+                                        <a href="@Url.Action("Print", "rptExpenseReport")"><i class="fa fa-money "></i><span>Monthly Expenses</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                        
+		
+                     <li class="@((ControllerName.Equals("ContactType") ? "active" : (ControllerName.Equals("Contact") ? "active" : (ControllerName.Equals("StoreInformation") ? "active": ""))))">
+                        <a href="#"><i class="fa fa-h-square"></i><span>Human Resource</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                         <ul class="treeview-menu">
+                             @*<li class="@((ControllerName.Equals("StoreInformation") ? "bg-black" : ""))">
+                                 <a href="@Url.Action("Index", "StoreInformation")"><i class="fa fa-arrow-right "></i><span>Maidah Center</span></a>
+                             </li>*@
+                             <li class="@((ControllerName.Equals("ContactType") ? "bg-black" : ""))">
+                                 <a href="@Url.Action("Index", "ContactType")"><i class="fa fa-arrow-right "></i><span>Contact Category</span></a>
+                             </li>
+                             <li class="@((ControllerName.Equals("Contact") ? "bg-black" : ""))">
+                                 <a href="@Url.Action("Index", "Contact")"><i class="fa fa-user-md "></i><span>Doctor</span></a>
+                             </li>
+                              <li class="@((ControllerName.Equals("Contact") ? "bg-black" : ""))">
+                                 <a href="@Url.Action("AddNew", "Contact")"><i class="fa fa-user-md "></i><span>Add New Doctor</span></a>
+                             </li>
+                              <li class="@((ControllerName.Equals("Contact") ? "bg-black" : ""))">
+                                 <a href="@Url.Action("Index", "Contact")"><i class="fa fa-user "></i><span>Staff</span></a>
+                             </li>
+                              <li class="@((ControllerName.Equals("Contact") ? "bg-black" : ""))">
+                                 <a href="@Url.Action("AddNew", "Contact")"><i class="fa fa-user "></i><span>Add New Staff</span></a>
+                             </li>
+                         </ul>
+                    </li>       
+                     
+      
+                    <li class="@((ControllerName.Equals("DoctorFee") ? "active" : (ControllerName.Equals("DailyOPDToken") ? "active" :
+                    (ControllerName.Equals("Department") ? "active" : (ControllerName.Equals("Room") ? "active" :
+                    (ControllerName.Equals("PatientReg") ? "active" : (ControllerName.Equals("OutDoorPatientTest") ? "active" : ""))))))))))">
+                        <a href="#"><i class="fa fa-h-square"></i><span>Maidah Center</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+
+                             <li class="@((ControllerName.Equals("DailyOPDToken") ? "active" : ""))">
+                                <a href="@Url.Action("GenerateToken", "DailyOPDToken")"><i class="fa fa-bed"></i><span>Patient Appointment</span></a>
+                            </li>
+                             <li class="@((ControllerName.Equals("OutDoorPatientTest") ? "active" : ""))">
+                                <a href="@Url.Action("Index", "OutDoorPatientTest")"><i class="fa fa-bed"></i><span>Investigation Test</span></a>
+                            </li>
+                            <li class="@((ControllerName.Equals("Department") ? "bg-black" : ""))">
+                                <a href="@Url.Action("Index", "Department")"><i class="fa fa-usd"></i><span>Department</span></a>
+                            </li>
+                            <li class="@((ControllerName.Equals("FeeType") ? "active" : ""))">
+                                <a href="@Url.Action("Index", "FeeType")"><i class="fa fa-usd"></i><span>Doctor Fee Type</span></a>
+                            </li>
+
+                            <li class="@((ControllerName.Equals("DoctorFee") ? "bg-black" : ""))">
+                                <a href="@Url.Action("Index", "DoctorFee")"><i class="fa fa-usd"></i><span>Doctor Fee</span></a>
+                            </li>
+                             <li class="@((ControllerName.Equals("DoctorTiming") ? "bg-black" : ""))">
+                                <a href="@Url.Action("Index", "DoctorTiming")"><i class="fa fa-usd"></i><span>Doctor Timing</span></a>
+                            </li>
+                            
+                             <li class="@((ControllerName.Equals("Room") ? "bg-black" : ""))">
+                                <a href="@Url.Action("Index", "Room")"><i class="fa fa-usd"></i><span>Room</span></a>
+                            </li>
+                             <li class="@((ControllerName.Equals("PatientReg") ? "bg-black" : ""))">
+                                <a href="@Url.Action("Index", "PatientReg")"><i class="fa fa-usd"></i><span>Patient Registration</span></a>
+                            </li>
+                            <li class="@((ControllerName.Equals("PatientDiagnosticTest") ? "active" : ""))">
+                                <a href="@Url.Action("Index", "PatientDiagnosticTest")"><i class="fa fa-bed"></i><span>Patient Diagnostic Test</span></a>
+                            </li>
+                           
+                           
+                        </ul>
+                    </li>
+                            
+                    <li class="@((ControllerName.Equals("EmplyeeSalary") ? "active" : (ControllerName.Equals("Expenses") ? "active" :
+                     (ControllerName.Equals("ExpensesType") ? "active"  : ""))))">
+                        <a href="#"><i class="fa fa-h-square"></i><span>Finance</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                             <li class="@((ControllerName.Equals("EmplyeeSalary") ? "active" : ""))">
+                                <a href="@Url.Action("Index", "EmplyeeSalary")"><i class="fa fa-usd"></i><span>Emplyee Salary</span></a>
+                            </li>  
+                             <li class="@((ControllerName.Equals("ExpensesType") ? "active" : ""))">
+                                <a href="@Url.Action("Index", "ExpensesType")"><i class="fa fa-arrow-right "></i><span>Expense Category</span></a>
+                            </li>
+                             <li class="@((ControllerName.Equals("Expenses") ? "active" : ""))">
+                                <a href="@Url.Action("Index", "Expenses")"><i class="fa fa-usd"></i><span>Expense</span></a>
+                            </li>                         
+                        </ul>
+                    </li>         
+                       
+                       
+
+
+                </ul>
+                <!-- /.sidebar-menu -->
+                }
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div>
+                    @RenderBody()
+                </div>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Your Page Content Here -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                Designed By Visual Tech Solutions
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; @System.DateTime.Today.Year <a href="http://visualtechsolution.com/" target="_blank">Visual Tech Solutions</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+
+
+
+        <script src="@Url.Content("~/Resources/bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Resources/dist/js/app.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Resources//plugins/datepicker/bootstrap-datepicker.js")" type="text/javascript"></script>
+    <script>
+        //Date picker
+        $('#Enterdatepicker').datepicker({
+            format: 'mm/dd/yyyy',
+            autoclose: true
+        });
+        $('#Enterdatepicker1').datepicker({
+            format: 'mm/dd/yyyy',
+            autoclose: true
+        });
+        $('#Enterdatepicker2').datepicker({
+            format: 'mm/dd/yyyy',
+            autoclose: true
+        });
+        $('#Enterdatepicker3').datepicker({
+            format: 'mm/dd/yyyy',
+            autoclose: true
+        });
+        $('#Enterdatepicker4').datepicker({
+            format: 'mm/dd/yyyy',
+            autoclose: true
+        });
+        $('#Updatedatepicker').datepicker({
+            format: 'mm/dd/yyyy',
+            autoclose: true
+        });
+        $('#Deletedatepicker').datepicker({
+            format: 'mm/dd/yyyy',
+            autoclose: true
+        });
+        $('#Expensesdatepicker').datepicker({
+            format: 'mm/dd/yyyy',
+            autoclose: true
+        });
+    </script>
+
+
+</body>
+</html>

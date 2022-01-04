@@ -1,0 +1,73 @@
+﻿@model MedicalStore.Models.clsChangePassword
+
+@{
+    ViewBag.Title = "ChangePwd";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight:bold;">Users</li>
+    <li>@Html.Raw("Change Password")</li>
+</ol>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Change Password</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Password) *</label>
+                                <div class="col-sm-6">
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })
+                                    <span class="text-danger">@ViewBag.ErrorMessage</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.NewPassword) *</label>
+                                <div class="col-sm-6">
+                                    @Html.PasswordFor(model => model.NewPassword, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.NewPassword, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.ConfirmPassword) *</label>
+                                <div class="col-sm-6">
+                                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" value="Change Password" class="btn btn-info" />
+                                    @Html.ActionLink("Cancel", "Index",null, new { @class="btn btn-default"})
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>

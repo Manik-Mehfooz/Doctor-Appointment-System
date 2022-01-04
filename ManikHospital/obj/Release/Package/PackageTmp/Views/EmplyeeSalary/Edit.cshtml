@@ -1,0 +1,123 @@
+﻿@model MedicalStore.Models.clsEmployeeWages
+
+@{
+    ViewBag.Title = "Update - Employee Monthly Salary";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight:bold;">Employee Salary</li>
+    <li>@Html.ActionLink("List - Employee Monthly Salary", "Index")</li>
+    <li>@Html.Raw("Update - Employee Monthly Salary")</li>
+</ol>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Employee Monthly Salary</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.ContactID) *</label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownList("ContactID", ViewBag.DdEmployees as SelectList, "Select Employee Name", new { @class = "form-control  select2" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.ContactID, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.PaymentType) *</label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownListFor(model => model.PaymentType, new List<SelectListItem> { 
+                                        new SelectListItem(){ Text="Cash", Value="Cash"},
+                                        new SelectListItem(){ Text="Cheque", Value="Cheque"},                                       
+                                   }, "Select Payment Type", new { @class = "form-control select2" })
+                                @Html.ValidationMessageFor(model => model.PaymentType, null, new { @class = "text-danger errorSize" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.PaymentType, null, new { @class = "text-danger" })
+                                    <span class="text-danger">@ViewBag.ErrorMessage</span>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.SalaryAmount) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.SalaryAmount, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.SalaryAmount, null, new { @class = "text-danger" })
+                                    <span class="text-danger">@ViewBag.ErrorMessage</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.LoanAmount) </label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.LoanAmount, new { @class = "form-control" })
+                                </div>                               
+                            </div>
+                        </div>
+                        
+                         <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.SalaryDate) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.SalaryDate, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.SalaryDate, null, new { @class = "text-danger" })
+                                    <span class="text-danger">@ViewBag.ErrorMessage</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Remarks) </label>
+                                <div class="col-sm-6">
+                                    @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="box-footer">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" value="Save" class="btn btn-info" />
+                                    @Html.ActionLink("Cancel", "Index",null, new { @class="btn btn-danger"})
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>

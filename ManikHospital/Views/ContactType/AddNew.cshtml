@@ -1,0 +1,63 @@
+﻿@model MedicalStore.Models.clsContactType
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+@*<ol class="breadcrumb">
+    <li style="font-weight:bold;">Contact Type</li>
+    <li>@Html.ActionLink("Detail", "Index")</li>
+    <li>@Html.Raw("Add New")</li>
+</ol>*@
+
+<ul class="breadcrumb-bg">
+    <li><a href="../ContactType/Index"><span class="fa fa-home"></span> List - Contact Type</a> </li>   
+    <li><a href="../ContactType/AddNew"> <span class="fa fa-plus"></span> Add Contact Type</a> </li>       
+</ul>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Information</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.ContactType) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.ContactType, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.ContactType, null, new { @class = "text-danger" })
+                                    <span class="text-danger">@ViewBag.ErrorMessage</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" value="Add" class="btn btn-info" />
+                                    @Html.ActionLink("Cancel", "Index",null, new { @class="btn btn-default"})
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

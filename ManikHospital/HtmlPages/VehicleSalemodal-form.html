@@ -1,0 +1,171 @@
+﻿<div class="modal-header bg-light-blue">
+    <button type="button" class="close" ng-click="cancel()" style="color: white; font-size: 25px;">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <h4><i class="fa fa-plus"></i>&nbsp;{{ModalAddMsg}}</h4>
+</div>
+
+<form name="form.userForm" ng-submit="AddSaleVehicle()" class="form-horizontal" novalidate>
+    <div class="modal-body">
+        <!--<div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Vehicle</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="form.userForm.VehicleID">
+                    <option ng-repeat="dd in ddVehicle" value="{{dd.VehicleID}}">{{dd.ModelName+' '+dd.ModelYear+' Color '+dd.ColorName}}</option>
+                </select>
+            </div>
+        </div> -->
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Vehicle</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                  <input type="text" class="form-control" style="background-color:white;" ng-model="SelectedVehicle" placeholder="" disabled="disabled" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Customer</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="form.userForm.CustomerID" required>
+                    <option value="0" ng-selected="true">Select Customer</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddContactCustomer" value="{{dd.ContactID}}">{{dd.FirstName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Invoice Number</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <!--<input type="text" class="form-control" ng-model="form.userForm.SaleInvoiceNumber"
+                    placeholder="Enter Sale Invoice Number" required>-->
+                <input type="text" class="form-control" ng-model="SaleINVNumber"
+                    placeholder="Enter Sale Invoice Number" required>
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Agent</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="form.userForm.AgentID" required>
+                    <option value="0" ng-selected="true">Select Agent</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddContactAgent" value="{{dd.ContactID}}">{{dd.FirstName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Sale Date</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="date" class="form-control" ng-model="form.userForm.SaleDate"  id="Expensesdatepicker"  placeholder="Enter Sale Date" required>
+            </div>
+        </div>
+        <div class="form-group" ng-init="form.userForm.SaleMethod ='Installment'">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Sale Method</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="radio" value="Installment" ng-click="InstField = true" ng-model="form.userForm.SaleMethod"/> Installment &nbsp;
+                <input type="radio" value="Cash" ng-click="InstField = false" ng-model="form.userForm.SaleMethod" />  Cash &nbsp;
+                <input type="radio" value="Cheque" ng-click="InstField = false" ng-model="form.userForm.SaleMethod"/> Cheque  
+                <!--<input type="text" class="form-control" ng-model="form.userForm.SaleMethod"
+                    placeholder="Enter Sale Method" required>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Sale Amount</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" style="background-color:white;" ng-model="TotalVehExpenseAmount"
+                    placeholder="Enter Sale Amount" disabled="disabled" required>
+            </div>
+        </div>
+        <div class="form-group" ng-show="InstField" ng-init="InstField = true">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Deposit Per</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="form.userForm.DepositPer"  ng-required="InstField" ng-change="form.userForm.DepositPayment = (form.userForm.DepositPer == 0) ? 0 : ((TotalVehExpenseAmount*form.userForm.DepositPer)/100)">
+                    <option value="0" ng-selected="true">select deposit %</option>
+                    <option style="display:none" value="">Select</option>
+                    <option value="10">10%</option>
+                    <option value="20">20%</option>
+                    <option value="30">30%</option>
+                    <option value="40">40%</option>
+                    <option value="50">50%</option>
+                    <option value="60">60%</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="InstField">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Deposit Payment</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="number" class="form-control" ng-model="form.userForm.DepositPayment"
+                    placeholder="Enter Deposit Payment"  style="background-color:white;" disabled="disabled" ng-required="InstField" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="InstField">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Remaining Payment</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="number" class="form-control" ng-model="RemainingPayment" value="{{RemainingPayment = (TotalVehExpenseAmount - form.userForm.DepositPayment) }}"
+                    placeholder="Enter Deposit Payment"  style="background-color:white;" disabled="disabled"  ng-required="InstField">
+            </div>
+        </div>
+        <div class="form-group" ng-show="InstField" ng-init="form.userForm.DepositPaymentType='Cash'">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Deposit Payment Type</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="radio" value="Cash" data-ng-model="form.userForm.DepositPaymentType" />  Cash &nbsp;
+                <input type="radio" value="Cheque" data-ng-model="form.userForm.DepositPaymentType" /> Cheque 
+<!--                <input type="text" class="form-control" ng-model="form.userForm.DepositPaymentType"
+                    placeholder="Enter Deposit Payment Type" required>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Payment Collector</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="form.userForm.PaymentCollectID"  required>
+                    <option value="0" ng-selected="true">Select Payment Collect</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddContactAdminStaff" value="{{dd.ContactID}}">{{dd.FirstName}}</option>
+                </select>
+             <!--   <input type="text" class="form-control" ng-model="form.userForm.PaymentCollectID"
+                    placeholder="Enter Payment Collect" required>-->
+            </div>
+        </div>
+        <div class="form-group" ng-show="InstField">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">No of Year</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="NoOfYear"  ng-required="InstField" ng-change="form.userForm.NoOfInstalments = (NoOfYear == 0) ? 0 : (NoOfYear * 12)">
+                    <option value="0" ng-selected="true">select no of year</option>
+                    <option style="display:none" value="">Select</option>
+                    <option value="1">1 Year</option>
+                    <option value="2">2 Year</option>
+                    <option value="3">3 Year</option>
+                    <option value="4">4 Year</option>
+                    <option value="5">5 Year</option>
+                    <option value="6">6 Year</option>
+                    <option value="7">7 Year</option>
+                    <option value="8">8 Year</option>
+                    <option value="9">9 Year</option>
+                    <option value="10">10 Year</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="InstField">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">No Of Instalments</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="number" class="form-control" ng-model="form.userForm.NoOfInstalments"
+                    placeholder="Enter No Of Instalments" style="background-color:white;" disabled="disabled"  ng-required="InstField">
+            </div>
+        </div>
+        <div class="form-group" ng-show="InstField">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Instalments Amount</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="number" class="form-control" ng-model="InstalmentsAmount" value="{{InstalmentsAmount =(RemainingPayment / (NoOfYear * 12))}}"
+                    placeholder="Enter No Of Instalments" style="background-color:white;" disabled="disabled"  ng-required="InstField">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Remarks</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <textarea class="form-control" ng-model="form.userForm.Remarks" placeholder="Enter Remarks"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-disabled="form.userForm.$dirty && form.userForm.$invalid">
+            <i class="fa fa-plus"></i>&nbsp;ADD</button>
+        <button class="btn btn-danger" ng-click="cancel()"><i class="fa fa-close"></i>&nbsp;Cancel</button>
+    </div>
+</form>

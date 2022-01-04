@@ -1,0 +1,290 @@
+﻿<div class="modal-header bg-light-blue">
+    <button type="button" class="close" ng-click="cancel()" style="color: white; font-size: 25px;">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <h4><i class="fa fa-automobile"></i>&nbsp;Vehicle Information</h4>
+</div>
+<form name="form.userForm" ng-submit="UpdateRecord()" class="form-horizontal" novalidate>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Custom Tabs -->
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs" style="font-size: 8px;">
+                        <li class="active"><a href="#tab_1" data-toggle="tab">Information</a></li>
+                        <li><a href="#tab_2" data-toggle="tab">Features</a></li>
+                        <li><a href="#tab_3" data-toggle="tab">Images</a></li>
+                        <li><a href="#tab_4" data-toggle="tab">Expenses</a></li>
+                        <li><a href="#tab_5" data-toggle="tab">Sale Detail</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <div class="box box-primary">
+                                <div class="box-body box-profile">
+                                    <!--<div class="box-header with-border">
+                                        <h4 class="box-title">Basic Information</h4>
+                                    </div>-->
+                                    <!-- /.box-header -->
+                                    <div class="box-body  table-responsive">
+                                        <table class="table table-bordered" style="font-size: 10px;">
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Contact</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.FirstName}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Stock No</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.StockNo}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Made By</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.Make}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Model No</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.ModelName}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Color Name</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.ColorName}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Fuel Type</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.FuelType1}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Body Style</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.BodyStyle1}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Transmission</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.Transmission1}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Cylinder</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.CylenderNo}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Mileage</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.Mileage}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Engine No</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.EngineNo}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Chasis No</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.ChasisNo}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Purchase Date</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.PurchaseDate.replace('/Date(','').replace(')/','') | date:"dd-MMM-yy"}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Purchase Amount</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.PurchaseAmount}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Purchase Notes</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.PurchaseNotes}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Purchase Status</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.PurchaseStatus}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Purchase Number</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.PurchaseNumber}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Purchase City</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.PurchaseCity}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Purchase State</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.PurchaseState}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Holder</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.Holder}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Holder Contact</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.HolderContact}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Other Notes</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.OtherNotes}}</td>
+                                            </tr>
+                                            <!--<tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Status</td>
+                                                <td class="col-md-8 col-xs-6">{{userForm.Status}}</td>
+                                            </tr>-->
+                                        </table>
+                                        <!--<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_2">
+                            <div class="box box-primary">
+                                <div class="box-body box-profile">
+                                    <!--<div class="box-header with-border">
+                                        <h4 class="box-title">Vehicle Features</h4>
+                                    </div>-->
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div ng-repeat="data in SelectedVehicleFeatures"
+                                            class="label label-info" style="margin: 2px 4px 2px 0px; float: left;">
+                                            {{data.Feature}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_3">
+                            <div class="box box-primary">
+                                <div class="box-body box-profile">
+                                    <!--<div class="box-header with-border">
+                                        <h4 class="box-title">
+                                            Vehicle Images
+                                        </h4>
+                                    </div>-->
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="row margin-bottom">
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <img src="../images/car1.jpg" id="vehImg" class="img-responsive img-thumbnail" alt="photo" />
+                                                </div>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <img class="img-responsive img-thumbnail" id="vehImg1" onclick="onHoverImages(1)" src="../images/car1.jpg" alt="Photo">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <img class="img-responsive img-thumbnail" id="vehImg2" onclick="onHoverImages(2)" src="../images/car2.jpg" alt="Photo">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <img class="img-responsive img-thumbnail" id="vehImg3" onclick="onHoverImages(3)" src="../images/car3.jpg" alt="Photo">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <img class="img-responsive img-thumbnail" id="vehImg4" onclick="onHoverImages(4)" src="../images/car4.jpg" alt="Photo">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <img class="img-responsive img-thumbnail" id="vehImg5" onclick="onHoverImages(5)" src="../images/car5.jpg" alt="Photo">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_4">
+                            <div class="box box-primary">
+                                <div class="box-body box-profile table-responsive">
+                                    <!--<div class="box-header with-border">
+                                        <h4 class="box-title">Vehicle Features</h4>
+                                    </div>-->
+                                    <div class="box-body">
+                                        <table class="table table-bordered" style="font-size: 10px;">
+                                            <tr>
+                                                <td class="col-md-2 col-xs-2 text-bold">Expense Date</td>
+                                                <td class="col-md-2 col-xs-2 text-bold">Expense Type</td>
+                                                <td class="col-md-2 col-xs-2 text-bold">Vender</td>
+                                                <td class="col-md-2 col-xs-2 text-bold">Chasis No</td>
+                                                <td class="col-md-2 col-xs-2 text-bold">Engine No</td>
+                                                <td class="col-md-2 col-xs-2 text-bold">Amount</td>
+                                            </tr>
+                                            <tr ng-repeat="dd in ddVehicleExp">
+                                                <td class="col-md-2 col-xs-2">{{dd.ExpenseDate.replace('/Date(','').replace(')/','') | date:"dd-MMM-yy"}}</td>
+                                                <td class="col-md-2 col-xs-2">{{dd.ExpensesType1}}</td>
+                                                <td class="col-md-2 col-xs-2">{{dd.FirstName}}</td>
+                                                <td class="col-md-2 col-xs-2">{{dd.ChasisNo}}</td>
+                                                <td class="col-md-2 col-xs-2">{{dd.EngineNo}}</td>
+                                                <td class="col-md-2 col-xs-2">{{dd.Amount}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_5">
+                            <div class="box box-primary">
+                                <div class="box-body box-profile">
+                                    <!--<div class="box-header with-border">
+                                        <h4 class="box-title">Basic Information</h4>
+                                    </div>-->
+                                    <!-- /.box-header -->
+                                    <div class="box-body  table-responsive">
+                                        <table class="table table-bordered" style="font-size: 10px;" ng-repeat="sale in VehicleSaleDetail">
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Vehicle</td>
+                                                <td class="col-md-8 col-xs-6">{{SelectedVehicle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Customer</td>
+                                                <td class="col-md-8 col-xs-6">{{sale.Customer}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Sale Invoice Number</td>
+                                                <td class="col-md-8 col-xs-6">{{sale.SaleInvoiceNumber}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Agent</td>
+                                                <td class="col-md-8 col-xs-6">{{sale.Agent}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Sale Date</td>
+                                                <td class="col-md-8 col-xs-6">{{sale.SaleDate.replace('/Date(','').replace(')/','') | date:"dd-MMM-yy"}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Sale Method</td>
+                                                <td class="col-md-8 col-xs-6">{{sale.SaleMethod}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Sale Amount</td>
+                                                <td class="col-md-8 col-xs-6">{{sale.SaleAmount}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Deposit Per</td>
+                                                <td class="col-md-8 col-xs-6">{{(sale.DepositPer == null) ? 0 : sale.DepositPer}}%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Deposit Payment</td>
+                                                <td class="col-md-8 col-xs-6">{{(sale.DepositPayment == null) ? 'Nil' : sale.DepositPayment}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Deposit Payment Type</td>
+                                                <td class="col-md-8 col-xs-6">{{(sale.SaleMethod != 'Installment') ? 'Nil' : sale.DepositPaymentType}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Payment Collector</td>
+                                                <td class="col-md-8 col-xs-6">{{sale.PaymentCollector}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">No Of Instalments</td>
+                                                <td class="col-md-8 col-xs-6">{{(sale.NoOfInstalments == null) ? 0 : sale.NoOfInstalments}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4 col-xs-6 text-bold">Remarks</td>
+                                                <td class="col-md-8 col-xs-6">{{sale.Remarks}}</td>
+                                            </tr>
+
+                                        </table>
+                                        <!--<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" ng-click="cancel()"><i class="fa fa-close"></i>&nbsp;Close</button>
+    </div>
+</form>

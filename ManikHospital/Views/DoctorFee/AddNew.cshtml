@@ -1,0 +1,93 @@
+﻿@model MedicalStore.Models.clsDoctorFee
+
+@{
+    ViewBag.Title = "Add - Doctor Fee";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+@*<ol class="breadcrumb">
+    <li style="font-weight:bold;">Doctor Fee</li>
+    <li>@Html.ActionLink("List - Doctor Fee", "Index")</li>
+    <li>@Html.Raw("Add - Doctor Fee")</li>
+</ol>*@
+
+<ul class="breadcrumb-bg">
+    <li><a href="../DoctorFee/Index"><span class="fa fa-home"></span> List - Doctor Fee</a> </li>   
+    <li><a href="../DoctorFee/AddNew"> <span class="fa fa-plus"></span> Add Doctor Fee</a> </li>       
+</ul>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Doctor Fee</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.DoctorID) *</label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownList("DoctorID", ViewBag.DdDoctorName as SelectList,"Select Doctor Name", new { @class = "form-control select2" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.DoctorID, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.FeeTypeID) *</label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownList("FeeTypeID", ViewBag.FeeType as SelectList,"Select Fee Type", new { @class = "form-control select2" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.FeeTypeID, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Fees) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Fees, new { @Value="0", @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.Fees, null, new { @class = "text-danger" })
+                                    <span class="text-danger">@ViewBag.ErrorMessage</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="box-footer">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" value="Save" class="btn btn-info" />
+                                    @Html.ActionLink("Cancel", "Index",null, new { @class="btn btn-danger"})
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+	<!-- Select2 -->
+	<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+	<script type="text/javascript">
+    		$(function () {
+       			//Initialize Select2 Elements
+        		$(".select2").select2();
+   	 	});
+	</script>

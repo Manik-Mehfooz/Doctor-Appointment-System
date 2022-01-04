@@ -1,0 +1,18 @@
+﻿<div class="modal-header bg-light-blue">
+    <button type="button" class="close" ng-click="cancel()" style="color: white; font-size: 25px;">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <h4><span class="fa fa-exclamation-circle"></span> Delete Alert</h4>
+</div>
+<form name="form.userForm" ng-submit="submitForm()" class="form-horizontal" novalidate>
+    <div class="modal-body">
+        <div class="form-group">
+           &nbsp;&nbsp; Are you sure you want to Delete ?
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="deleteForm()">
+            <i class="fa fa-trash"></i>&nbsp;Delete</button>
+        <button class="btn btn-default" ng-click="cancel()"><i class="fa fa-close"></i>&nbsp;Cancel</button>
+    </div>
+</form>

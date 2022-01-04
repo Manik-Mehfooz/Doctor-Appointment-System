@@ -1,0 +1,114 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<MedicalStore.Models.clsStock>
+
+@{
+    ViewBag.Title = "Stock Check";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Stock</li>
+    <li>@Html.ActionLink("DashBoard", "Index", "Users")</li>
+</ol>
+
+<div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Medicine Stock</h3>
+                        <div class="box-tools pull-right">
+                            <div class="has-feedback">
+                                @using (Html.BeginForm())
+                                {
+                                    <input type="text" id="myInput" class="form-control input-sm" onkeyup="myFunction()" placeholder="Search with product" title="Type in a name">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body text-left table-responsive no-padding">
+                        <table class="table table-bordered" id="myTable">
+                            <tr>
+
+                                <th>
+                                    @Html.DisplayName("Product Name")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Company")
+                                </th>
+                                <th class="text-center">
+                                    @Html.DisplayName("Opening Stock")
+                                </th>
+                                <th class="text-center">
+                                    @Html.DisplayName("Purchase Quantity")
+                                </th>
+                                <th class="text-center">
+                                    @Html.DisplayName("Sale Quantity")
+                                </th>
+                                <th class="text-center">
+                                    @Html.DisplayName("Current Stock")
+                                </th>
+
+                            </tr>
+                            @foreach (var item in Model)
+                            {                               
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProductName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Company)
+                                    </td>
+                                    <td class="text-center text-bold text-success">
+                                        @Html.DisplayFor(modelItem => item.OpeningStockQty)
+                                    </td>
+                                    <td class="text-center text-bold text-success">
+                                        @Html.DisplayFor(modelItem => item.PurchaseQuantity)
+                                    </td>
+                                    <td class="text-center text-bold text-success">
+                                        @Html.DisplayFor(modelItem => item.SaleQuantity)
+                                    </td>
+                                    <td class="text-center text-bold text-danger">
+                                        @Html.DisplayFor(modelItem => item.StockQuantity)
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                     <div style="float: right;">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+                    </div>
+                   @* <div class="box-footer clearfix" style="float: right;">
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </section>
+</div>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

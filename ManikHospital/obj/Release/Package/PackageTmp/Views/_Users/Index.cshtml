@@ -1,0 +1,286 @@
+﻿@model MedicalStore.Models.clsDashBoard
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Dashboard
+        <small></small>
+      </h1>
+      @*<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>*@
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-flask"></i></span>@*ion ion-ios-gear-outline*@
+
+            <div class="info-box-content">
+              <span class="info-box-text">Today's Lab Test</span>
+              <span class="info-box-number">                 
+               
+                  @Html.Label("labcount", (string)ViewBag.LabTestCount)                  
+                 
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-heart"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Today's X-Ray</span>
+              <span class="info-box-number">
+                  @Html.Label("xraycount", (string)ViewBag.XrayCount)  
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Today's Sale</span>
+              <span class="info-box-number">
+                   @Html.Label("labcount", (string)ViewBag.SaleAmount)
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-cart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Today's Purchase</span>
+              <span class="info-box-number">
+                  @Html.Label("labcount", (string)ViewBag.PurchaseAmount) 
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Near By Expiry Date</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+               
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+               
+               <table class="table-condensed table-bordered table-striped table-hover table-responsive margin-left " id="myList" style="width: 98%; margin-left:10px">
+                                    <tr>                                         
+                                        <th>
+                                            @Html.DisplayName("Product Name")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Batch No")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Invoice Number")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Drug Agency")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Agency Invoice#")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Invoice Date")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Expiry Date")
+                                        </th>                                      
+                                    </tr>
+
+                                    @foreach (var item in (IEnumerable<MedicalStore.Models.clsDashBoard>)ViewBag.List)
+                                    {                                        
+                                        <tr>                                                     
+                                            <td class="col-sm-2">
+                                                @Html.DisplayFor(modelItem => item.ProductName)
+                                            </td>
+                                            <td class="col-sm-1">
+                                                 @Html.DisplayFor(modelItem => item.BatchNo)
+                                            </td>
+                                            <td class="col-sm-2">
+                                                 @Html.DisplayFor(modelItem => item.InvioceNumber)
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.DisplayFor(modelItem => item.DrugAgency)
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.DisplayFor(modelItem => item.AgencyInvoiceNo)
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.DisplayFor(modelItem => item.InvoiceDate)
+                                            </td>
+                                            <td class="col-sm-1 bg-red">
+                                                @Html.DisplayFor(modelItem => item.ExpiryDate)
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+
+
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- ./box-body -->
+
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- Main row -->
+     
+
+        <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+          <!-- MAP & BOX PANE -->
+          
+          <!-- /.box -->
+          <div class="row">
+            
+            <!-- /.col -->
+
+            <div class="col-md-6">
+              <!-- USERS LIST -->
+              <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Payment Receivable</h3>
+
+                  <div class="box-tools pull-right">
+                    
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                  @*  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>*@
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                  
+
+                    <table class="table-condensed table-bordered table-striped table-hover table-responsive margin-left " id="myList" style="width: 100%;">
+                                    <tr>                                         
+                                        <th>
+                                            @Html.DisplayName("Patient Name")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Contact#")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Test")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Test Date")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Charges")
+                                        </th>                                                                             
+                                    </tr>
+
+                                    @foreach (var item in (IEnumerable<MedicalStore.Models.clsDashBoard>)ViewBag.PaymentList)
+                                    {                                        
+                                        <tr>                                                     
+                                            <td class="col-sm-2">
+                                                @Html.DisplayFor(modelItem => item.PatientName)
+                                            </td>
+                                            <td class="col-sm-1">
+                                                 @Html.DisplayFor(modelItem => item.ContactNo)
+                                            </td>
+                                            <td class="col-sm-2">
+                                                 @Html.DisplayFor(modelItem => item.TestName)
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.DisplayFor(modelItem => item.TestDate)
+                                            </td>
+                                            <td class="col-sm-1">
+                                                @Html.DisplayFor(modelItem => item.Charges)
+                                            </td>                                            
+                                        </tr>
+                                    }
+                                </table>
+
+
+                  <!-- /.users-list -->
+                </div>
+                <!-- /.box-body -->
+                
+                <!-- /.box-footer -->
+              </div>
+              <!--/.box -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <!-- TABLE: LATEST ORDERS -->
+          
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-md-4">
+          
+          
+
+          
+          <!-- /.box -->
+
+     
+        </div>
+        <!-- /.col -->
+      </div>
+
+
+
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  
+  <!-- /.content-wrapper -->

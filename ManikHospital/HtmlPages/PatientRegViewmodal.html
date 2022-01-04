@@ -1,0 +1,112 @@
+﻿<div class="modal-header bg-light-blue">
+    <button type="button" class="close" ng-click="cancel()" style="color: white; font-size: 25px;">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <h4> <img src="../images/surgery24x24.png" /> &nbsp;Patient Registration Information</h4>
+</div>
+<form name="form.userForm" class="form-horizontal" novalidate>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <div class="box-body  table-responsive">
+                            <table class="table table-bordered" style="font-size: 10px;">
+                                <tr>
+                                    <td class="col-md-3 col-xs-3 text-bold">MR #</td>
+                                    <td class="col-md-3 col-xs-3">{{userForm.PatientRegNo}}</td>
+                                    <td class="col-md-3 col-xs-3 text-bold">Doctor Name</td>
+                                    <td class="col-md-3 col-xs-3">{{userForm.DoctorName}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-3 col-xs-3 text-bold">Room No</td>
+                                    <td class="col-md-3 col-xs-3">{{userForm.Room}}</td>
+                                    <td class="col-md-3 col-xs-3 text-bold">Patient Name</td>
+                                    <td class="col-md-3 col-xs-3">{{userForm.FirstName}} {{userForm.LastName}}</td>
+                                </tr>  
+                                <tr>
+                                    <td class="col-md-3 col-xs-3 text-bold">Take Care Name</td>
+                                    <td class="col-md-3 col-xs-3">{{(userForm.TakeCareName == '') ? 'N/A' : userForm.TakeCareName}}</td>
+                                    <td class="col-md-3 col-xs-3 text-bold">Take Care Relation</td>
+                                    <td class="col-md-3 col-xs-3">{{(userForm.TakeCareRelation == '') ? 'N/A' : userForm.TakeCareRelation}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-3 col-xs-6 text-bold">Patient CNIC</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.PatientCNIC == '') ? 'N/A' : userForm.PatientCNIC }}</td>
+                                    <td class="col-md-3 col-xs-6 text-bold">Take Care CNIC</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.TakeCareCNIC == '') ? 'N/A' : userForm.TakeCareCNIC}}</td>
+                                </tr>
+                                <tr>
+                                   <!-- <td class="col-md-3 col-xs-6 text-bold">Date Of Birth</td>
+                                    <td class="col-md-3 col-xs-6">{{userForm.DateOfBirth.replace('/Date(','').replace(')/','') | date:"dd-MMM-yyyy"}}</td>-->
+                                    <td class="col-md-3 col-xs-6 text-bold">Age</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.Age == '') ? 'N/A' : userForm.Age}}</td>
+                                    <td class="col-md-3 col-xs-6 text-bold">Gender</td>
+                                    <td class="col-md-3 col-xs-6">{{userForm.Gender}}</td>
+                                </tr>
+                                <tr>                                    
+                                    <td class="col-md-3 col-xs-6 text-bold">Marital Status</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.MaritalStatus == '') ? 'N/A' : userForm.MaritalStatus}}</td>
+                                    <td class="col-md-3 col-xs-6 text-bold">Address</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.Address == '') ? 'N/A' : userForm.Address}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-3 col-xs-6 text-bold">City</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.City == '') ? 'N/A' : userForm.City}}</td>
+                               <!-- <tr>
+                                    <td class="col-md-3 col-xs-6 text-bold">State</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.State == '') ? 'N/A' : userForm.State}}</td>
+                                    <td class="col-md-3 col-xs-6 text-bold">Country</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.Country == '') ? 'N/A' : userForm.Country}}</td>
+                                </tr>-->
+                                    <td class="col-md-3 col-xs-6 text-bold">Occupation</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.Occupation == '') ? 'N/A' : userForm.Occuption}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-3 col-xs-6 text-bold">Telephone</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.Telephone == '') ? 'N/A' : userForm.Telephone}}</td>
+                                    <td class="col-md-3 col-xs-6 text-bold">MobileNo</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.MobileNo == '') ? 'N/A' : userForm.MobileNo}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-3 col-xs-6 text-bold">Guardian Name</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.GuardianName == '') ? 'N/A' : userForm.GuardianName}}</td>
+                                    <td class="col-md-3 col-xs-6 text-bold">Guardian Contact No</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.GuardianContactNo == '') ? 'N/A' : userForm.GuardianContactNo}}</td>
+                               </tr>
+                                <tr>
+                                    <td class="col-md-3 col-xs-6 text-bold">Refer By</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.ReferBy == '') ? 'N/A' : userForm.ReferBy}}</td>
+                                    <td class="col-md-3 col-xs-6 text-bold">Diagnosis</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.Diagnosis == '') ? 'N/A' : userForm.Diagnosis}}</td>
+                               </tr>
+                                <tr>
+                                    <td class="col-md-3 col-xs-6 text-bold">Secondary Diagnosis</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.SecondaryDiagnosis == '') ? 'N/A' : userForm.SecondaryDiagnosis}}</td>
+                                    <td class="col-md-3 col-xs-6 text-bold">Admission Date</td>
+                                    <td class="col-md-3 col-xs-6">{{userForm.AdmissionDate.replace('/Date(','').replace(')/','') | date:"dd-MMM-yyyy"}}</td>
+                                </tr>
+                               <!-- <tr>
+                                    <td class="col-md-3 col-xs-6 text-bold">Discharge Date</td>
+                                    <td class="col-md-3 col-xs-6">{{userForm.DischargeDate.replace('/Date(','').replace(')/','') | date:"dd-MMM-yyyy"}}</td>
+                                    <td class="col-md-3 col-xs-6 text-bold">Is Discharge</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.IsDischarge == '') ? 'N/A' : userForm.IsDischarge}}</td>
+                                </tr>-->
+                                <tr>
+                                    <td class="col-md-3 col-xs-6 text-bold">Remarks</td>
+                                    <td class="col-md-3 col-xs-6">{{(userForm.Remarks == '') ? 'N/A' : userForm.Remarks}}</td>
+                                </tr>
+                            </table>
+                            <!--<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" ng-click="cancel()"><i class="fa fa-close"></i>&nbsp;Close</button>
+    </div>
+</form>

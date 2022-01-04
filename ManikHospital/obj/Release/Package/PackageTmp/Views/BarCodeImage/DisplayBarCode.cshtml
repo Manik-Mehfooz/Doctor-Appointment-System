@@ -1,0 +1,97 @@
+﻿@model IList<MedicalStore.Models.clsBarcodeImage>
+
+@{
+    ViewBag.Title = "Display All BarCode Images";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Display All BarCode Images</li>
+    <li>@Html.ActionLink("DashBoard", "Index", "Users")</li>
+</ol>
+
+
+@* <input name="b_print" type="button" class="ipt"   onClick="printDiv('printableArea');" value=" Print ">*@
+
+
+       @using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("EnteredBy", Session["UserName"])
+    @Html.ValidationSummary(true)
+  <button type="button" id="Save" class="btn btn-info" onclick="location.href='@Url.Action("Print", "BarCodeImage", new { id=0})'" style="margin-left: 1%;">Print All Barcode</button>
+} 
+
+
+<div>
+    @{
+        var CompanyIDCheck = 0;
+    }
+    <!-- Main content -->
+    <section class="content">
+                  
+             
+
+        <div class="row"  >
+            
+            <div class="col-md-12">
+                <div class="box panel col-sm-12" id="printableArea">
+                    <br />
+                    @for (var j = 0; j < Model.Count(); j++)
+                    {
+                        var CurrCompanyID = Model[j].CompanyID;
+                        if (CurrCompanyID != CompanyIDCheck)
+                        {
+                        <div class="well well-sm col-sm-12 text-bold"><small style="font-size:15px; color:black !important;">@Model[j].Company</small></div>
+                            CompanyIDCheck = CurrCompanyID;
+                        }
+                        
+                        <div class="col-md-3 col-sm-4">
+                            <!-- small box -->
+                            <div class="small-box text-center" style="background-color:white; border:1px solid #ccc;">
+                                <div class="inner">
+                                    <p style="height:30px;"><small style="color:black !important;">@Model[j].ProductName</small></p>
+                                    <img src = '@Url.Action(@Model[j].BarcodeImage, "Barcodes")'  />
+                                </div>
+                                <div class="icon">
+                                    <i></i>
+                                </div>
+                                <a href="../BarCodeImage/Print/@Model[j].ProductID" style="background-color:black;" class="small-box-footer">
+              Print Barcode <i class="fa fa-print"></i>
+            </a>
+              
+                            </div>
+                        </div>
+                        
+@*
+                        
+                        <div class="panel col-sm-2" style="padding:0px !important;">
+                            <div class="col-sm-12"><small>@Model[j].ProductName</small></div>
+                            <div class="col-sm-12">
+                                <img src =  '@Url.Action(@Model[j].BarcodeImage, "Barcodes")'/></div>
+                            <div class="col-sm-12">@Html.ActionLink("Print", "Print", new { id = @Model[j].ProductID }, new { })</div>
+                        </div>*@
+
+                        //if (j% 4 == 2) { <br /> }
+                    }
+
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        
+    </section>
+</div>
+
+<script type="text/javascript">
+            function printDiv(divName) {
+                var printContents = document.getElementById(divName).innerHTML;
+                var originalContents = document.body.innerHTML;
+
+                document.body.innerHTML = printContents;
+
+                window.print();
+
+                document.body.innerHTML = originalContents;
+            }
+    </script>

@@ -1,0 +1,176 @@
+﻿@model MedicalStore.Models.clsPatientSurgery
+
+
+@{
+    ViewBag.Title = "Indoor Patient";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Indoor Patient</li>
+    <li>@Html.ActionLink("List - Indoor Patient", "Index")</li>
+    <li>@Html.Raw("Indoor Patient Surgery")</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Indoor Patient Surgery</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()                                     
+                        
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PatientID) *</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("PatientID", ViewBag.DdPatient as SelectList, "Select Patient", new { @class = "form-control select2", @disabled = "disabled", @style = "background-color:white !important;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.DoctorName) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.DoctorName, new { @class = "form-control", @disabled = "disabled", @style = "background-color:white;" })
+                                @Html.ValidationMessageFor(model => model.DoctorName, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.SurgeryType) </label>
+                            <div class="col-sm-8">
+                                @Html.RadioButtonFor(model => model.SurgeryType, "Minor Surgery", new { @checked = "checked", onchange = "this.form.submit();" }) Minor Surgery &nbsp;&nbsp;
+                                @Html.RadioButtonFor(model => model.SurgeryType, "Major Surgery", new { onchange = "this.form.submit();" }) Major Surgery 
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.SurgeryAmount) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.SurgeryAmount, new { @class = "form-control", @disabled = "disabled", @style = "background-color:white;" })
+                                @Html.ValidationMessageFor(model => model.SurgeryAmount, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.SurgeryDate) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.SurgeryDate, "{0:MM/dd/yyy}", new { @Value = DateTime.Now.Date.ToString("MM/dd/yyyy"), id = "Expensesdatepicker", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SurgeryDate, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Anaesthetist) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Anaesthetist, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Anaesthetist, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.AnaesthetistType) </label>
+                            <div class="col-sm-8">
+                                @Html.RadioButtonFor(model => model.AnaesthetistType, "G/A", new { @checked = "checked" }) G/A &nbsp;&nbsp;
+                                @Html.RadioButtonFor(model => model.AnaesthetistType, "S/A", new {  }) S/A
+                                &nbsp;&nbsp;
+                                @Html.RadioButtonFor(model => model.AnaesthetistType, "L/A", new {   }) L/A
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.OTTechnician1) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.OTTechnician1, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.OTTechnician1, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.OTTechnician2) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.OTTechnician2, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.OTTechnician2, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.OTTechnician3) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.OTTechnician3, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.OTTechnician3, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>     
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.OTTechnician4) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.OTTechnician4, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.OTTechnician4, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.OTTechnician5) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.OTTechnician5, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.OTTechnician5, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>      
+                    <div class="box-body col-md-12 col-sm-12 ">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.SurgeryProcedure) </label>
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(model => model.SurgeryProcedure, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="box-body col-md-12 col-sm-12 ">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Remarks) </label>
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="box-footer col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" name="submit1" value="Save" class="btn btn-info" />
+                                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Select2 -->
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>

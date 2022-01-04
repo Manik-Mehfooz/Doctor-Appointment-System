@@ -1,0 +1,158 @@
+﻿@model MedicalStore.Models.clsPatientDiagnosticTest
+
+@{
+    ViewBag.Title = "Indoor Patient Test";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Indoor Patient</li>
+    <li>@Html.ActionLink("List - Indoor Patient", "Index")</li>
+    <li>@Html.Raw("Indoor Patient Investigation Test")</li>
+</ol>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Indoor Patient</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("EnteredBy", Session["UserName"]) 
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.TestType) *</label>
+                            <div class="col-sm-8">
+                                @Html.RadioButtonFor(model => model.TestType, "Lab", new { @checked = "checked", onchange = "this.form.submit();" }) Lab &nbsp;&nbsp;
+                                    @Html.RadioButtonFor(model => model.TestType, "X-Ray", new { onchange = "this.form.submit();" }) X-Ray
+                                 &nbsp;&nbsp;
+                                @Html.RadioButtonFor(model => model.TestType, "Ultra Sound", new { onchange = "this.form.submit();" }) Ultra Sound
+                                <br />
+                                @Html.ValidationMessageFor(model => model.TestType, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.TestID) *</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("TestID", ViewBag.DdTestName as SelectList, "Select Test Name", new { onchange = "this.form.submit();", @class = "form-control  select2" })
+                                <div class="col-sm-1" style="margin-left: -30px; margin-top: 7px;">
+                                    <input type="image" name="addnewtest" value="newtest" src="~/images/plus24x24.png" style="display: none;" title="Add New Diagnostic Test" />
+                                </div>
+                                @Html.ValidationMessageFor(model => model.TestID, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PatientName) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.PatientName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PatientName, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Charges) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Charges, new { @Value = ViewBag.Charges, @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>       
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.DoctorName) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.DoctorName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Pathologist) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Pathologist, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(model => model.Pathologist, null, new { @class = "text-danger errorSize" })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.TestDate) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.TestDate, "{0:MM/dd/yyy}", new { @Value = DateTime.Now.Date.ToString("MM/dd/yyyy"), id = "Enterdatepicker", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TestDate, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Technologist) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Technologist, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(model => model.Technologist, null, new { @class = "text-danger errorSize" })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.DeliveryDate) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.DeliveryDate, "{0:MM/dd/yyy}", new { @Value = DateTime.Now.Date.ToString("MM/dd/yyyy"), id = "Updatedatepicker", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DeliveryDate, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Remarks) </label>
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" name="btnType" value="Save" class="btn btn-info" />
+                                @*<input type="submit" name="btnType" value="Add & Print" class="btn btn-success" />*@
+                                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function DefaultValue() {
+        var dis = document.getElementById("txtDiscount");
+        if (dis.value.length <= 0) {
+            dis.value = 0;
+        }
+    }
+    function DefaultAge() {
+        var dis = document.getElementById("txtAge");
+        if (dis.value.length <= 0) {
+            dis.value = 0;
+        }
+    }
+</script>
+
+<!-- Select2 -->
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>

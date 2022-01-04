@@ -1,0 +1,414 @@
+﻿@using MedicalStore.Models;
+@model  SalesViewModel
+
+
+@{
+    ViewBag.Title = "Admit Patient Medicine";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Sales</li>
+    @*<li>@Html.ActionLink("Detail", "Index")</li>*@
+    <li>@Html.Raw("Admit Patient Medicine")</li>
+
+    <li>@Html.ActionLink("List Admit Patient", "Index")</li>
+    <li>@Html.ActionLink("OPD Sale", "AddNew", "Sales")</li>
+
+</ol>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Sales Invoice</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("EnteredBy", Session["UserName"])
+                        @Html.ValidationSummary(true)
+                        <div class="box-body">
+                            <div class="form-group">
+
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.PatientID) *</label>
+                                        <div class="col-sm-6">
+                                            @Html.DropDownList("PatientID", ViewBag.DdPatientList as SelectList, "Select Patient Name", new { @class = "form-control select2" })
+                                        </div>
+                                        <div class="col-sm-4">
+                                            @Html.ValidationMessageFor(model => model.PatientID, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*<div class="box-body col-md-6 col-sm-12 bArea">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label text-right">@Html.Label("Patient Name") *</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.PatientName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.PatientName, null, new { @class = "text-danger errorSize" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="box-body col-md-6 col-sm-12 bArea">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label text-right">@Html.Label("Contact No") *</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.ContactNo, null, new { @class = "text-danger errorSize" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-body col-md-6 col-sm-12 bArea">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label text-right">@Html.Label("Guardian Name") *</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.GuardianName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.GuardianName, null, new { @class = "text-danger errorSize" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-body col-md-6 col-sm-12 bArea">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label text-right">@Html.Label("Guardian Contact No") </label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.GuardianContactNo, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-body col-md-6 col-sm-12 bArea">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label text-right">@Html.Label("Room Number") *</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.RoomNo, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.RoomNo, null, new { @class = "text-danger errorSize" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="box-body col-md-6 col-sm-12 bArea">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label text-right">@Html.Label("Diagnostics") *</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.Diagnostics, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Diagnostics, null, new { @class = "text-danger errorSize" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-body col-md-6 col-sm-12 bArea">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label text-right">@Html.Label("Patient Admit Date") *</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.SaleDate, "{0:MM/dd/yyy}", new { @Value = DateTime.Now.Date.ToString("MM/dd/yyyy"), id = "Enterdatepicker", @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.SaleDate, null, new { @class = "text-danger errorSize" })
+                                        </div>
+                                    </div>
+                                </div>*@
+                               @* <div class="box-body col-md-6 col-sm-12 bArea">
+                                    <div class="form-group">
+
+                                        <div class="col-sm-8">
+                                        </div>
+                                    </div>
+                                </div>*@
+                                
+                                @*<div class="box-body col-md-6 col-sm-12 bArea">
+                                    <div class="form-group">
+
+                                        <div class="col-sm-8">
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="box-body col-md-6 col-sm-12 bArea">
+                                    <div class="form-group">
+
+                                        <div class="col-sm-8">
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                                <div style="margin-left:4%;" id="main">
+                                    @* @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control",id = "txtcheck",onkeyup="valuecheck();"} })*@
+                                    <label class="control-label text-right">@Html.Label("Select / Scane Product") *</label>
+                                    <input type="text" id="txtcheck" onkeyup="valuecheck()" name="GetBarcode"
+                                        style="width: 40%;" onchange="this.form.submit();"list="anrede" autofocus autocomplete="off" />
+                                    <datalist id="anrede" Style="height: 40px;">
+                                        <!-- options are filled in the script -->
+                                    </datalist>
+                                    @*onchange="this.form.submit()"*@
+                                </div>
+
+                                <br />
+                               
+
+                                @if (ViewBag.ProductList != null || ViewBag.List != null)
+                                {   
+                                    <table id="myTable" class="table table-stripped table-bordered">
+                                        <tr class="info">
+                                            <td>
+                                                <label>Item</label>
+                                            </td>
+                                            <td>
+                                                <label>Strength</label>
+                                            </td>
+                                            <td>
+                                                <label>Price</label>
+                                            </td>
+                                            <td>
+                                                <label>Quantity</label>
+                                            </td>
+                                            <td>
+                                                <label>Amount</label>
+                                            </td>
+                                            <td>
+                                                <label>Remove</label>
+                                            </td>
+                                        </tr>
+                                        @foreach (var item in (IEnumerable<SalesViewModel>)ViewBag.List)
+                                        {
+                                            <tr>
+                                                @Html.HiddenFor(modelItem => item.SaleDetailID)
+                                                <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Strength)</td>
+                                                <td>
+                                                    <input type="text" name="UnitPrice" Value="@item.Price" onkeypress = "return isNumberKey(event)" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="Quantity" Value="@item.Quantity" onkeypress = "return isNumberKey(event)" />
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Total)
+                                                </td>
+                                                <td class="btnFields">
+                                                    @Html.ActionLink(" ", "DeleteRow", new { id = item.SaleDetailID }, new { @class = "fa fa-trash btnLarge text-danger" })
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                    <table style="width: 45%;" id="TotTable" class="table table-stripped table-bordered">
+                                        <tr class="warning">
+                                            <td>
+                                                <label>Sub Total</label>
+                                            </td>
+
+                                            <td>
+                                                <label>@ViewBag.SubTotal</label>
+                                            </td>
+                                        </tr>
+                                        <tr class="warning">
+                                            <td>
+                                                <label>
+                                                    Discount
+                                                     <input type="text" name="discount" value="@ViewBag.Discount" style="width: 20%;" />
+                                                    %
+                                                </label>
+                                            </td>
+
+                                            <td>
+                                                <label>@ViewBag.DiscPer
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr class="danger">
+                                            <td>
+                                                <label style="font-size: xx-large;">Net Amount:</label>
+                                            </td>
+
+                                            <td>
+                                                <label style="font-size: xx-large;">@ViewBag.NetTotal</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <button type="submit" id="Calculate" class="btn btn-primary" name="Calculate">Calculate</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="Save" class="btn btn-info" onclick="location.href='@Url.Action("Index", "SalesAdmitPatient")'" style="margin-left: 5%;">
+                                                    Back To List
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="Cancel" class="btn btn-danger" onclick="location.href='@Url.Action("Cancel", "SalesAdmitPatient")'" style="margin-left: 10%;">
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="Refresh" class="btn btn-danger" onclick="location.href='@Url.Action("Cancel", "SalesAdmitPatient")'" style="    margin-left: -85%;display:none;">
+                                                    Refresh
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                                else
+                                {
+
+                                }
+
+                                <div class="col-sm-6">
+                                </div>
+                                <div class="col-sm-4">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function HideShow() {
+        document.getElementById("Calculate").style.visibility = 'hidden';
+        document.getElementById("Print").style.visibility = 'hidden';
+        document.getElementById("Cancel").style.visibility = 'hidden';
+        document.getElementById("txtcheck").style.visibility = 'hidden';
+        document.getElementById("myTable").style.visibility = 'hidden';
+        document.getElementById("TotTable").style.visibility = 'hidden';
+
+        document.getElementById("Refresh").style.display = 'block';
+    }
+
+
+    function myCreateFunction() {
+        //alert('test');
+        var table = document.getElementById("myTable");
+        var input = document.getElementById("abc").value;
+        var mainDiv = document.getElementById("main");
+        var row = table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = "<input type='text'/>";
+        cell2.innerHTML = "<input type='text'/>";
+        //document.getElementById("abc").remove();
+
+        //var input = document.createElement("input");
+        //input.setAttribute("type", "text");
+        //input.setAttribute("id", "abc");
+        //input.setAttribute("onchange", "myCreateFunction()");
+        //mainDiv.appendChild(input);
+        //document.getElementById("abc").focus();
+        //document.getElementById("abc").select();
+    }
+    //$(document).ready(function () {
+
+    //    $("#abc").change(function () {
+    //        $("#myTable").append("<tr><td>This is test</td><td><input type='text'></td></tr>");
+    //        //$("#abc").focus();
+    //        $("#abc").val('');
+    //        $("#mydiv").load("#abc");
+    //        return false;
+
+    //    });
+
+    //});
+
+    // Find and remove selected table rows
+    //$(".delete-row").click(function () {
+    //    $("table tbody").find('input[name="record"]').each(function () {
+    //        if ($(this).is(":checked")) {
+    //            $(this).parents("tr").remove();
+    //        }
+    //    });
+    //});
+    //});
+</script>
+
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+
+
+</script>
+@*<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>*@
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.24/jquery.autocomplete.min.js"></script>
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+<script type="text/javascript">
+
+    var abcCheck;
+    function valuecheck() {
+        document.getElementById("anrede").innerHTML = "";
+        var mycars = new Array();
+        var val1 = document.getElementById("txtcheck").value;
+        var val1InLower = val1.toLowerCase();
+        if (val1.length > 0) {
+            $.ajax({
+                type: "GET",
+                datatype: "JSON",
+                url: "/SalesAdmitPatient/AutoCompleteProduct/?term=" + val1,
+                success: function (data) {
+                    var totalRecords = 5;
+                    var count = 0;
+                    for (var i = 0; i < data.length; i++) {
+                        var getProductName = data[i]["ProductName"];
+                        var getProductNameInLower = getProductName.toLowerCase();
+                        var checkCond = getProductNameInLower.startsWith(val1InLower);
+                        if (checkCond) {
+
+                            mycars[count] = data[i]["ProductName"];
+                            count++;
+                        }
+                    }
+                    $(mycars).each(function (index, item) {
+                        var option = $('<option value="' + item + '"></option>');
+                        $('#anrede').append(option);
+                    });
+
+                }
+            });
+        }
+        //var val2 = document.getElementById("txtcheck");
+        //new Awesomeplete(val2, {
+        //    List:["abs","ats","jack","zzz"]
+        //});
+    }
+
+
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+    //var jack=[{ "value": "Teriflox" }, { "value": "testttt" }, { "value": "acb" }, { "value": "aa" }, { "value": "fd" }, { "value": "sda" }, { "value": "asd" }, { "value": "asa" }, { "value": "saad" }];
+
+    //$("#txtcheck").autocomplete({
+    //    lookup: function (query, done) {
+
+    //        var result = {
+    //            suggestions: abcCheck
+    //        };
+    //        done(result);
+    //    }
+
+    //    //width: 448,
+    //    //delimiter: /(,|;)\s*/,
+    //    //lookup: 'Andorra,Azerbaijan,Bahamas,Bahrain,Bangladesh,Barbados,Belarus,Belgium,Belize,Benin,Bhutan,Bolivia,Bosnia Herzegovina,Botswana,Brazil,Brunei,Bulgaria,Burkina, Burundi,Cambodia,Cameroon,Canada,Cape Verde,Central African Rep,Chad,Chile,China,Colombia,Comoros,Congo,Congo {Democratic Rep},Costa Rica,Croatia,Cuba,Cyprus,Czech Republic,Denmark,Djibouti,Dominica,Dominican Republic,East Timor,Ecuador,Egypt,El Salvador,Equatorial Guinea,Eritrea,Estonia,Ethiopia,Fiji,Finland,France,Gabon,Gambia,Georgia,Germany,Ghana,Greece,Grenada,Guatemala,Guinea,Guinea-Bissau,Guyana,Haiti,Honduras,Hungary,Iceland,India,Indonesia,Iran,Iraq,Ireland {Republic},Israel,Italy,Ivory Coast,Jamaica,Japan,Jordan,Kazakhstan,Kenya,Kiribati,Korea North,Korea South,Kosovo,Kuwait,Kyrgyzstan,Laos,Latvia,Lebanon,Lesotho,Liberia,Libya,Liechtenstein,Lithuania,Luxembourg,Macedonia,Madagascar,Malawi,Malaysia,Maldives,Mali,Malta,Marshall Islands,Mauritania,Mauritius,Mexico,Micronesia,Moldova,Monaco,Mongolia,Montenegro,Morocco,Mozambique,Myanmar, {Burma},Namibia,Nauru,Nepal,Netherlands,New Zealand,Nicaragua,Niger,Nigeria,Norway,Oman,Pakistan,Palau,Panama,Papua New Guinea,Paraguay,Peru,Philippines,Poland,Portugal,Qatar,Romania,Russian Federation,Rwanda,St Kitts & Nevis,St Lucia,Saint Vincent & the Grenadines,Samoa,San Marino,Sao Tome & Principe,Saudi Arabia,Senegal,Serbia,Seychelles,Sierra Leone,Singapore,Slovakia,Slovenia,Solomon Islands,Somalia,South Africa,South Sudan,Spain,Sri Lanka,Sudan,Suriname,Swaziland,Sweden,Switzerland,Syria,Taiwan,Tajikistan,Tanzania,Thailand,Togo,Tonga,Trinidad & Tobago,Tunisia,Turkey,Turkmenistan,Tuvalu,Uganda,Ukraine,United Arab Emirates,United Kingdom,United States,Uruguay,Uzbekistan,Vanuatu,Vatican City,Venezuela,Vietnam,Yemen,Zambia,Zimbabwe'.split(',')
+
+    //});
+
+</script>

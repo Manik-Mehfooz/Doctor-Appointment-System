@@ -1,0 +1,87 @@
+﻿@model MedicalStore.Models.clsEmployeeWages
+
+@{
+    ViewBag.Title = "Monthly Salary Report";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+
+<ul class="breadcrumb-bg">
+    <li><a href="#"><span class="fa fa-print"></span> Monthly Salary Report</a> </li>   
+    <li><a href="../../Users/Index"> <span class="fa fa-dashboard"></span> DashBoard</a> </li>       
+</ul>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Monthly Salary Report</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()                        
+                                              
+                        <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label text-right">@Html.Label("Salary Month")</label>
+                                <div class="col-sm-8">
+                                    @*@Html.DropDownList("SalaryMonth", ViewBag.DdSalaryMonth as SelectList, "Select Salary Month", new { @class = "form-control select2" })*@
+                                    @Html.DropDownListFor(model => model.SalaryMonth,
+                                        Enumerable.Range(1, 12).
+                                        Select(i => new SelectListItem
+                                        {
+                                            Value = i.ToString(),
+                                            Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                                        }),
+                                            "Select Salary Month", new { @class = "form-control select2"})
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label text-right">@Html.Label("Salary Year")</label>
+                                <div class="col-sm-8">
+                                    @*@Html.DropDownList("SalaryYear", ViewBag.DdSalaryYear as SelectList, "Select Salary Year", new { @class = "form-control select2" })*@
+                                    @Html.DropDownListFor(model => model.SalaryYear,
+                                            Enumerable.Range(2017, (DateTime.Now.Year + 1) - 2017).
+                                            Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }),
+                                            "Select Salary Year", new {@class = "form-control select2" })
+                                    
+                                </div>
+                            </div>
+                        </div>
+                         <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="box-footer col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" name="submit1" value="Print Report" class="btn btn-success" />                                    
+                                    @Html.ActionLink("Cancel","Index", "Users",null, new { @class="btn btn-danger"})
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

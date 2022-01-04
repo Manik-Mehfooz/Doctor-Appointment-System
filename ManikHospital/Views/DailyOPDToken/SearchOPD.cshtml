@@ -1,0 +1,117 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<MedicalStore.Models.clsDailyOPDToken>
+
+@{
+    ViewBag.Title = "List - Search OPD";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+
+<ul class="breadcrumb-bg">
+    <li><a href="../DailyOPDToken/Index"><span class="fa fa-home"></span> List - Today OPD Token </a> </li>   
+    <li><a href="../DailyOPDToken/GenerateToken"> <span class="fa fa-plus"></span> Generate OPD Token</a> </li>       
+</ul>
+
+<style>
+    .bgRed {
+        background-color: #f27680;
+        color: white;
+    }
+</style>
+
+<script src="~/JSFiles/JSSearch.js"></script>
+<div data-ng-app="modSearch">
+    <div data-ng-controller="ctrlSearch" data-ng-init="SearchOldOPDTokenForReprint()">
+        <div class="row">
+            <div class="col-md-12">               
+                <div class="box">
+                    <div class="box-header with-border">
+                        <div class="col-xs-12" style="padding-left: 0px;">
+                             @using (Html.BeginForm())
+                             {
+                                <div class="btn-group pull-left">
+                                    <div class="col-sm-10">
+                                        <input type="text" name="id" style="width:600px;font-weight: bolder;padding-top: 16px;padding-bottom: 16px;"
+                                             ng-model="txtSearch" ng-click="currentPage=0" class="form-control input-sm"
+                                             placeholder="Search by Token Number, Patient Name, ContactNo, Age, Sex, Age, City " />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="submit" data-ng-show="txtSearch"  name="btnSearch" value="Search" class="btn btn-info" />
+                                    </div>
+                                </div>
+                             }
+                        </div>
+                    </div>
+                     <div class="box-body" ng-show="CheckSH">
+                        <pre class="center"><i class="fa fa-spinner fa-spin fa-lg"></i>  Loading...</pre>
+                    </div>
+                     <div class="box-body" ng-show="alldata.length == '0'">
+                        <pre class="center">No Record Found!</pre>
+                    </div>
+
+                    <div class="box-body text-left table-responsive no-padding" ng-show="!CheckSH">
+                        <table class="table table-condensed table-bordered table-striped margin-left ">
+                            <tr ng-repeat="B in alldata | limitTo:1">
+                                <th>Doctor Name</th>
+                                <th>OPD Number</th>
+                                <th>Patient Name</th>
+                                <th>Contact Number</th>
+                                <th>Age</th>
+                                <th>Sex</th>
+                                <th>City</th>
+                                <th>Time</th>                               
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("Re-Print")</th>                                
+                            </tr>
+                            <tr class="paginationclass" ng-repeat="B in alldata" >                                
+                                <td>{{B.DoctorName}}</td>                               
+                                <td>{{B.OPDNumber}}</td>
+                                <td>{{B.PatientName}}</td>
+                                <td>{{B.ContactNo}}</td>                              
+                                <td>{{B.Age}}</td>    
+                                <td>{{B.Sex}}</td> 
+                                <td>{{B.City}}</td>   
+                                <td>{{B.OPDDate.replace('/Date(','').replace(')/','') | date:"HH:mm"}}</td>    
+                                <td class="btnFields" >
+                                    <a href="../DailyOPDToken/RePrintReport/{{B.OPDID}}" data-tooltip="Re-Print"><span class="fa fa-print btnLarge text-info"></span></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function funDelete(a) {
+        var id = $(a).attr("id");
+        $("#DRecord").attr("href", "../DailyOPDToken/Delete/" + id);
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Alert</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="DRecord" class="btn btn-info">YES</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,115 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<MedicalStore.Models.clsDepartment>
+
+@{
+    ViewBag.Title = "List Department";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+@*<ol class="breadcrumb">
+    <li style="font-weight: bold;">Department</li>
+    <li>@Html.Raw("List - Department")</li>
+    <li>@Html.ActionLink("Add - Department", "AddNew")</li>
+</ol>*@
+
+<ul class="breadcrumb-bg">
+    <li><a href="../Department/Index"><span class="fa fa-home"></span> List - Department</a> </li>   
+    <li><a href="../Department/AddNew"> <span class="fa fa-plus"></span> Add Department</a> </li>       
+</ul>
+
+<script src="~/JSFiles/JSSearch.js"></script>
+<div data-ng-app="modSearch">
+    <div data-ng-controller="ctrlSearch" data-ng-init="GetCtrlDepartmentData()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <div class="col-xs-12" style="padding-left: 0px;">
+                            <div class="btn-group pull-left">
+                                <select ng-model="itemsPerPage" class="form-control input-sm">
+                                    <option value="5">05</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                </select>
+                            </div>
+                            <div class="btn-group pull-right">
+                                <input type="text" ng-model="txtSearch" ng-click="currentPage=0" class="form-control input-sm" placeholder="Search" />
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body" ng-show="CheckSH">
+                        <pre><i class="fa fa-spinner fa-spin fa-lg"></i>  Loading...</pre>
+                    </div>
+                    <div class="box-body text-left table-responsive no-padding" ng-show="!CheckSH">
+                        <table class="table table-condensed table-bordered table-striped margin-left ">
+                            <tr>
+                                <th>Department Name</th>
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("Edit")</th>
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("Delete")</th>
+                            </tr>
+                            <tr class="paginationclass" ng-repeat="B in alldata | filter:txtSearch | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage">
+                                <td>{{B.DeptName}}</td>
+                                <td class="btnFields">
+                                    <a href="../Department/Edit/{{B.DeptID}}" data-tooltip="Edit"><span class="fa fa-edit btnLarge text-info"></span></a>
+                                </td>
+                                <td class="btnFields">
+                                    <a href="#" class="fa fa-trash btnLarge text-danger" onclick="funDelete(this)" data-toggle="modal" data-target="#myModal" id="{{B.DeptID}}"></a>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="pagination-div">
+                            <ul class="pagination">
+                                <li ng-class="DisablePrevPage()">
+                                    <a href ng-click="prevPage()">« Prev</a>
+                                </li>
+                                <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                                    <a href="#">{{n+1}}</a>
+                                </li>
+                                @*<li ng-repeat="n in range()">
+                                            <a href="#" style="background-color:red !important;">{{n}}</a>
+                                        </li>*@
+                                <li ng-class="DisableNextPage()">
+                                    <a href ng-click="nextPage()">Next »</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function funDelete(a) {
+        var id = $(a).attr("id");
+        $("#DRecord").attr("href", "../Department/Delete/" + id);
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Alert</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="DRecord" class="btn btn-info">YES</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>

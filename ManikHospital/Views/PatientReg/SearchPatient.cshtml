@@ -1,0 +1,158 @@
+﻿@model IEnumerable<MedicalStore.Models.clsPatientReg>
+
+@{
+    ViewBag.Title = "Search Patient";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<style>
+    .bgRed {
+        background-color: #f27680;
+        color: white;
+    }
+</style>
+<script src="~/JSFiles/JSSales.js"></script>
+
+@*<ol class="breadcrumb" style="margin-bottom: 0px;">
+    <li style="font-weight: bold;">Sale Invoice</li>
+     <li>@Html.ActionLink("List - Sale Invoice", "IndexPending", "Sales")</li>
+    <li>@Html.ActionLink("Add - Sale Invoice", "AddNew")</li>
+    <li>@Html.Raw("Search Invoice")</li>
+</ol>*@
+
+<ul class="breadcrumb-bg">
+    <li><a href="../../PatientReg/Index"><span class="fa fa-home"></span> List - Indoor Patient</a> </li>   
+    <li><a href="../../PatientReg/AddNew"> <span class="fa fa-plus"></span> Add - Indoor Patient</a> </li>    
+    <li><a href="#"> <span class="fa fa-search"></span> Search Patient</a> </li> 
+</ul>
+
+<script src="~/JSFiles/JSPatientReg.js"></script>
+<div data-ng-app="modPatientReg">
+    <div data-ng-controller="ctrlPatientReg" data-ng-init="GetInvoiceData()"> 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <div class="col-xs-12" style="padding-left: 0px;">
+                             @using (Html.BeginForm())
+                             {
+                                <div class="btn-group pull-left">
+                                    <div class="col-sm-10">
+                                        <input type="text" name="id" style="width:600px;font-weight: bolder;padding-top: 16px;padding-bottom: 16px;"
+                                             ng-model="txtSearch" ng-click="currentPage=0" class="form-control input-sm"
+                                             placeholder="Search by MR#, FirstName, LastName, CNIC, Mobile#, AdmissionDate, Age " />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="submit" data-ng-show="txtSearch"  name="btnSearch" value="Search Patient" class="btn btn-info" />
+                                    </div>
+                                </div>
+                             }
+                        </div>
+                    </div>
+                    <div class="box-body" ng-show="CheckSH">
+                        <pre class="center"><i class="fa fa-spinner fa-spin fa-lg"></i>  Loading...</pre>
+                    </div>
+                    <div class="box-body" ng-show="alldata.length == '0'">
+                        <pre class="center">No Record Found!</pre>
+                    </div>
+                    <div class="box-body text-left table-responsive no-padding" ng-show="!CheckSH">
+                        <table class="table table-condensed table-bordered table-striped margin-left ">
+                            <tr ng-repeat="B in alldata | limitTo:1">
+                                <th>MR #</th>
+                                <th>Patient Name</th>                                
+                                <th>Admission Date</th>
+                                @*<th>Total Bill</th>     *@                                                           
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("Edit")</th>
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("New Discount")</th>
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("Pharmacy")</th>
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("Detail")</th>
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("Deposite Slip")</th>
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("View Payment")</th>
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("Discharge Billing")</th>
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("Discharge Summary")</th>
+                                <th style="width: 80px" class="text-center">@Html.DisplayName("Patient Medicine")</th>
+                            </tr>
+                            <tr class="paginationclass" ng-repeat="B in alldata" >                                
+                                <td>{{B.PatientRegNo}}</td>                               
+                                <td>{{B.FirstName}} {{B.LastName}}</td>
+                                <td>{{B.AdmissionDate.replace('/Date(','').replace(')/','') | date:"dd MMM, yyyy"}}</td>
+                                @*<td>{{B.BalanceOwing}}</td>   *@                             
+                                 
+                                <td class="btnFields">
+                                    <a href="../PatientReg/Edit/{{B.PatientID}}" data-tooltip="Edit: {{B.PatientRegNo}}"><img src="~/images/pencil.png" /></a>
+                                </td>
+                                <td class="btnFields">
+                                    <a href="../PatientReg/AddDiscount/{{B.PatientID}}" data-tooltip="Edit: {{B.PatientRegNo}}"><img src="~/images/Discount.png" /></a>
+                                </td>
+                                <td class="btnFields">                                   
+                                    <a data-tooltip="Pharmacy"  href="../PatientReg/IndoorPatientMedicine/{{B.PatientID}}"><img src="~/images/medicine24x24.png" /></a>
+                                </td>
+                                <td class="btnFields">
+                                    <a href="#" data-tooltip="View" data-ng-click="showForm(B.PatientID,'View',B)"> <img src="~/images/london-eye.png" /></a>
+                                </td>
+                                <td class="btnFields">
+                                    <a data-tooltip="Deposit Slip" href="../PatientReg/PrintDepositSlip/{{B.PatientID}}"><img src="~/images/Print.png" /> </a>
+                                </td>
+                                <td class="btnFields">
+                                    <a data-tooltip="View Patient Payments" href="#" data-ng-click="showForm(B.PatientID,'PatientPayments',B)"><img src="~/images/Payment.png" /></a>
+                                </td>
+
+                                <td class="btnFields">
+                                    <a href="../PatientReg/PrintReport/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><img src="~/images/Print.png" /></a>
+                                </td>
+                                <td class="btnFields">
+                                    <a href="../PatientReg/PrintDischargeSummary/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><img src="~/images/Print.png" /></a>
+                                </td>
+                                <td class="btnFields">
+                                    <a href="../PatientReg/PrintPatientMidicine/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><img src="~/images/Print.png" /></a>
+                                </td>
+
+                              @*  <td class="btnFields">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle " type="button" data-toggle="dropdown">
+                                            <span class="fa fa-print"></span>                                            
+                                        </button>
+                                        <ul class="dropdown-menu">                                           
+                                            <li><a href="../PatientReg/PrintReport/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><span class="fa fa-print text-info"></span>Discharge Billing</a></li>
+                                            <li><a href="../PatientReg/PrintDischargeSummary/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><span class="fa fa-print text-info"></span>Discharge Summary</a></li>
+                                            <li><a href="../PatientReg/PrintPatientMidicine/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><span class="fa fa-print text-info"></span>Patient Medicine</a></li>
+                                            <li><a href="../PatientReg/PrintPatientTests/{{B.PatientID}}" data-tooltip="Print: {{B.PatientRegNo}}"><span class="fa fa-print text-info"></span>Patient Tests</a></li>
+
+                                        </ul>
+                                    </div> 
+                                </td>*@
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function funDelete(a) {
+        var id = $(a).attr("id");
+        $("#DRecord").attr("href", "/Sales/Delete/" + id);
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Alert</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="DRecord" class="btn btn-info">YES</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>

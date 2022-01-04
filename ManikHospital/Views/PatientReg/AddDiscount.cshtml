@@ -1,0 +1,138 @@
+﻿@model MedicalStore.Models.clsPatientReg
+
+@{
+    ViewBag.Title = "Indoor Patient - Discount";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ul class="breadcrumb-bg">
+    <li><a href="../../PatientReg/Index"><span class="fa fa-home"></span> List - Indoor Patient</a> </li>   
+    <li><a href="../../PatientReg/AddNew"> <span class="fa fa-plus"></span> Add Indoor Patient</a> </li>       
+</ul>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Indoor Patient - Discount</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.PatientID)
+
+                    
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PatientRegNo) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.PatientRegNo, new { @class = "form-control", @Readonly = "true", style = "background-color:white; font-weight:bold; font-size:18px;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            
+                            <div class="col-sm-8">
+                               &nbsp;
+                            </div>
+                        </div>
+                    </div> 
+                     
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.FirstName) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.FirstName, new {@Readonly = "true",  @class = "form-control" })                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.LastName) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.LastName, new { @Readonly = "true", @class = "form-control" })                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                   <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.BillingAmount) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.BillingAmount, new { @Readonly = "true", @class = "form-control" })                                
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.DepositeAmount) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.DepositeAmount, new { @Readonly = "true", @class = "form-control" }) 
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.Label("Already Discounted") </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Discount, new { @Readonly = "true", @class = "form-control" })                                
+                            </div>
+                        </div>
+                    </div> 
+                    
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.DiscountAmount) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.DiscountAmount, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DiscountAmount, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>               
+                    
+                    
+                    
+                    <div class="box-footer">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" name="submit1" value="Add Discount" class="btn btn-info" />
+                                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function DefaultValue() {
+        var dis = document.getElementById("txtDiscount");
+        if (dis.value.length <= 0) {
+            dis.value = 0;
+        }
+    }
+    function DefaultAge() {
+        var dis = document.getElementById("txtAge");
+        if (dis.value.length <= 0) {
+            dis.value = 0;
+        }
+    }
+
+</script>
+
+
+<!-- Select2 -->
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>

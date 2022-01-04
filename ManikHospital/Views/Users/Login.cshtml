@@ -1,0 +1,147 @@
+﻿@*@model MedicalStore.Models.clsUsers*@
+@model MedicalStore.Models.clsContact
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hospital Management System | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link href="~/Resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Resources/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+    <style>
+        
+        body {
+            background: #999;
+            /*padding: 40px;*/
+            font-family: "Calibri";
+        }
+
+        #bg {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            /*background: url("../Images/medicalCover.jpg") no-repeat center center fixed;*/
+            background: url('@Url.Content("../Images/mmc.jpg")') no-repeat center center fixed;
+            background-size: cover;
+            -webkit-filter: blur(1px);
+        }
+
+        form, .bottomArea {
+            position: relative;
+            width: 350px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 60px 24px 30px 24px;
+            border: 1px solid;
+            border-color: rgba(255,255,255,0.8);
+        }
+
+            form input {
+                background-color: rgba(0,0,0,.0) !important;
+                border: none !important;
+                border: 1px solid #3c8dbc !important;
+                border-radius: 0px !important;
+                background-repeat: no-repeat;
+                padding: 8px 24px 8px 10px;
+                font: normal .875em/1.25em "Calibri";
+                letter-spacing: .085em;
+                color: black !important;
+                margin-bottom: 19px;
+            }
+
+                form input:focus {
+                    color: black !important;
+                    border: 1px solid #3c8dbc !important;
+                    background-color: rgba(0,0,0,.4);
+                }
+
+        ::-webkit-input-placeholder {
+            color: black !important;
+            text-transform: capitalize;
+        }
+
+        ::-moz-placeholder {
+            color: black !important;
+            text-transform: capitalize;
+        }
+
+        :-ms-input-placeholder {
+            color: black !important;
+            text-transform: capitalize;
+        }
+
+        form button[type=submit] {
+            border: none !important;
+            border-radius: 0px;
+            padding: 8px;
+            color: #fff !important;
+            background-color: #3c8dbc !important;
+            border: none !important;
+            border: 1px solid #3c8dbc !important;
+            border-radius: 0px !important;
+            letter-spacing: .20em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+            form button[type=submit]:focus {
+                background-color: rgba(60,141,188,.9) !important;
+            }
+    
+    </style>
+</head>
+<body>
+    <div id="bg"></div>
+
+    
+    <div>
+        <br />
+        <br />
+        @{string ErrorStr = ViewBag.ErrorMessage;
+      if (ErrorStr.Length > 0)
+      {
+        <div class="bottomArea text-center" style="padding: 10px 0px; font-weight:bold; font-size:20px; background-color:#d9d5d5;"><small>@ViewBag.ErrorMessage</small></div>
+      }
+      else{
+          <br /><br />
+      }
+    }
+        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            
+            <img class="profile-user-img img-responsive"   src="@Url.Content("~/images/hospital-management-system-logo.png")" alt="User profile picture">  @*style="width:140px; height:120px; margin:0 auto;"*@
+            <hr style="border: none; border-top: 1px solid #bbb;" />
+            <div class="form-group has-feedback input-group">
+                <span class="input-group-addon" style="background-color:#3c8dbc !important; border:1px solid #3c8dbc;"><i class="glyphicon glyphicon-user"></i></span>
+                @Html.TextBoxFor(model => model.UserName, new { id = "email", placeholder = "Username", @class = "form-control email" })
+                @*@Html.ValidationMessageFor(model => model.UserName, null, new { @class = "text-danger small" })*@
+            </div>
+            <div class="form-group has-feedback input-group">
+                <span class="input-group-addon"  style="background-color:#3c8dbc !important; border:1px solid #3c8dbc;"><i class="glyphicon glyphicon-lock"></i></span>
+                @Html.PasswordFor(model => model.Password, new { placeholder = "Password", @class = "form-control pass" })
+                @*@Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })*@
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-block btn-success">Login</button>
+                </div>
+            </div>
+            <br />
+        }
+    </div>
+    
+</body>
+</html>

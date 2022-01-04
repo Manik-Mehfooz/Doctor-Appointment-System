@@ -1,0 +1,107 @@
+/** {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+  }*/
+  
+  h1 {
+    font-weight: 100;
+    font-size: 32px;
+    /*padding: 40px;*/
+    color: #fff;
+  }
+  
+.breadcrumb-bg {
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+.breadcrumb-bg .icon {
+    font-size: 14px;
+  }
+  .breadcrumb-bg li {
+    float: left;
+  }
+  .breadcrumb-bg li a {
+    color: #FFF;
+    display: block;
+    background: #C0C0C0;
+    text-decoration: none;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px 0 5px;
+    text-align: center;
+    margin-right: 23px;
+  }
+  .breadcrumb-bg li:nth-child(even) a {
+    background-color: #C0C0C0;
+  }
+  .breadcrumb-bg li:nth-child(even) a:before {
+    border-color: #C0C0C0;
+    border-left-color: transparent;
+  }
+ .breadcrumb-bg li:nth-child(even) a:after {
+    border-left-color: #C0C0C0;
+  }
+ .breadcrumb-bg li:first-child a {
+    padding-left: 15px;
+    -moz-border-radius: 4px 0 0 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px 0 0 4px;
+  }
+ .breadcrumb-bg li:first-child a:before {
+    border: none;
+  }
+  .breadcrumb-bg li:last-child a {
+    padding-right: 15px;
+    -moz-border-radius: 0 4px 4px 0;
+    -webkit-border-radius: 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .breadcrumb-bg li:last-child a:after {
+    border: none;
+  }
+  .breadcrumb-bg li a:before, .breadcrumb-bg li a:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 0 solid #C0C0C0;
+    border-width: 20px 10px;
+    width: 0;
+    height: 0;
+  }
+.breadcrumb-bg li a:before {
+    left: -20px;
+    border-left-color: transparent;
+  }
+.breadcrumb-bg li a:after {
+    left: 100%;
+    border-color: transparent;
+    border-left-color: #C0C0C0;
+  }
+ .breadcrumb-bg li a:hover {
+    background-color: #3c8dbc;
+  }
+ .breadcrumb-bg li a:hover:before {
+    border-color: #3c8dbc;
+    border-left-color: transparent;
+  }
+ .breadcrumb-bg li a:hover:after {
+    border-left-color: #3c8dbc;
+  }
+  .breadcrumb-bg li a:active {
+    background-color: #3c8dbc;
+  }
+ .breadcrumb-bg li a:active:before {
+    border-color: #3c8dbc;
+    border-left-color: transparent;
+  }
+.breadcrumb-bg li a:active:after {
+    border-left-color: #3c8dbc;
+  }

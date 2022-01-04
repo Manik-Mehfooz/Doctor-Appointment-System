@@ -1,0 +1,337 @@
+﻿@model MedicalStore.Models.clsPatientReg
+
+@{
+    ViewBag.Title = "Indoor Patient";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+@*<ol class="breadcrumb">
+    <li style="font-weight: bold;">Indoor Patient</li>
+    <li>@Html.ActionLink("List - Indoor Patient", "Index")</li>
+    <li>@Html.Raw("Update - Indoor Patient")</li>
+</ol>*@
+
+<ul class="breadcrumb-bg">
+    <li><a href="../../PatientReg/Index"><span class="fa fa-home"></span> List - Indoor Patient</a> </li>   
+    <li><a href="../../PatientReg/AddNew"> <span class="fa fa-plus"></span> Add Indoor Patient</a> </li>       
+</ul>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Indoor Patient</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.PatientID)
+
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PatientCategory) *</label>
+                            <div class="col-sm-8">
+                                @Html.RadioButtonFor(model => model.PatientCategory, "Private") Private &nbsp;&nbsp;
+                                    @Html.RadioButtonFor(model => model.PatientCategory, "Panel") Panel
+                                    <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PatientType) *</label>
+                            <div class="col-sm-8">
+                                @Html.RadioButtonFor(model => model.PatientType, "Admit") Admit &nbsp;&nbsp;
+                                    @Html.RadioButtonFor(model => model.PatientType, "Temporary") Temporary
+                                    <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PatientRegNo) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.PatientRegNo, new { @class = "form-control", @Readonly = "true", style = "background-color:white; font-weight:bold; font-size:18px;" })
+                            </div>
+                        </div>
+                    </div>
+                    
+                     <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.AdmissionDate) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.AdmissionDate, "{0:MM/dd/yyy}", new { id = "Enterdatepicker1", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AdmissionDate, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>  
+                    
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.DoctorID) *</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("DoctorID", ViewBag.DdDoctor as SelectList, "Select Doctor Name", new { @class = "form-control  select2" })
+                                @Html.ValidationMessageFor(model => model.DoctorID, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    
+                     <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Diagnosis) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Diagnosis, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Diagnosis, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.SecondaryDiagnosis) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.SecondaryDiagnosis, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.FirstName) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.LastName) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LastName, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Age) *</label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Age, new {  id = "txtAge", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Age, null, new { @class = "text-danger errorSize" })
+                            </div>@*onchange = "DefaultAge()",*@
+                        </div>
+                    </div>
+                    
+                    @*<div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.MiddleName) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.TakeCareName) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.TakeCareName, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(model => model.TakeCareName, null, new { @class = "text-danger errorSize" })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.TakeCareRelation) </label>
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(model => model.TakeCareRelation, new List<SelectListItem> { 
+                                        new SelectListItem(){ Text="Father", Value="Father"},
+                                        new SelectListItem(){ Text="Brother", Value="Brother"},
+                                        new SelectListItem(){ Text="Husband", Value="Husband"},
+                                        new SelectListItem(){ Text="Cousin", Value="Cousin"},
+                                        new SelectListItem(){ Text="Mother", Value="Mother"},
+                                        new SelectListItem(){ Text="Sister", Value="Sister"},
+                                        new SelectListItem(){ Text="Other", Value="Other"}, 
+                                   }, "Select Relation", new { @class = "form-control select2" })
+                               @* @Html.ValidationMessageFor(model => model.TakeCareRelation, null, new { @class = "text-danger errorSize" })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.PatientCNIC) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.PatientCNIC, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.TakeCareCNIC) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.TakeCareCNIC, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.DateOfBirth) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.DateOfBirth, "{0:MM/dd/yyy}", new { id = "Enterdatepicker", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Gender) *</label>
+                            <div class="col-sm-8">
+                                @Html.RadioButtonFor(model => model.Gender, "male", new { @checked = "checked" }) Male &nbsp;&nbsp;
+                                    @Html.RadioButtonFor(model => model.Gender, "female") Female
+                                    <br />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.MaritalStatus) </label>
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(model => model.MaritalStatus, new List<SelectListItem> { 
+                                        new SelectListItem(){ Text="Single", Value="Single"},
+                                        new SelectListItem(){ Text="Married", Value="Married"},
+                                        new SelectListItem(){ Text="Widow", Value="Widow"}
+                                   }, new { @class = "form-control select2" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Address) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.City) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>@*
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.State) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Country) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Country, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Occupation) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Occupation, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.Telephone) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Telephone, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.MobileNo) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.GuardianName) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.GuardianName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.GuardianContactNo) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.GuardianContactNo, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-6 col-sm-12 bArea">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.ReferBy) </label>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.ReferBy, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div> 
+                   
+                    @*<div class="box-body col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Remarks) </label>
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="box-footer">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" value="Update" class="btn btn-info" />
+                                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function DefaultValue() {
+        var dis = document.getElementById("txtDiscount");
+        if (dis.value.length <= 0) {
+            dis.value = 0;
+        }
+    }
+    function DefaultAge() {
+        var dis = document.getElementById("txtAge");
+        if (dis.value.length <= 0) {
+            dis.value = 0;
+        }
+    }
+
+</script>
+
+
+<!-- Select2 -->
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>

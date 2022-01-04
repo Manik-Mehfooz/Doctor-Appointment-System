@@ -1,0 +1,21 @@
+D:\Mudasir Data\ManikHospital\ManikHospital\bin\ManikHospital.dll
+D:\Mudasir Data\ManikHospital\ManikHospital\bin\ManikHospital.pdb
+D:\Mudasir Data\ManikHospital\ManikHospital\obj\Debug\ManikHospital.csprojResolveAssemblyReference.cache
+D:\Mudasir Data\ManikHospital\ManikHospital\obj\Debug\RdlCompile.cache
+D:\Mudasir Data\ManikHospital\ManikHospital\obj\Debug\RdlCompile.compiled
+D:\Mudasir Data\ManikHospital\ManikHospital\obj\Debug\ManikHospital.dll
+D:\Mudasir Data\ManikHospital\ManikHospital\obj\Debug\ManikHospital.pdb
+D:\Manik\ManikHospital\ManikHospital\bin\ManikHospital.dll
+D:\Manik\ManikHospital\ManikHospital\bin\ManikHospital.pdb
+D:\Manik\ManikHospital\ManikHospital\obj\Debug\ManikHospital.csprojResolveAssemblyReference.cache
+D:\Manik\ManikHospital\ManikHospital\obj\Debug\RdlCompile.cache
+D:\Manik\ManikHospital\ManikHospital\obj\Debug\RdlCompile.compiled
+D:\Manik\ManikHospital\ManikHospital\obj\Debug\ManikHospital.dll
+D:\Manik\ManikHospital\ManikHospital\obj\Debug\ManikHospital.pdb
+C:\Users\hp\Desktop\ManikHospital\ManikHospital\bin\ManikHospital.dll
+C:\Users\hp\Desktop\ManikHospital\ManikHospital\bin\ManikHospital.pdb
+C:\Users\hp\Desktop\ManikHospital\ManikHospital\obj\Debug\ManikHospital.csprojResolveAssemblyReference.cache
+C:\Users\hp\Desktop\ManikHospital\ManikHospital\obj\Debug\RdlCompile.cache
+C:\Users\hp\Desktop\ManikHospital\ManikHospital\obj\Debug\RdlCompile.compiled
+C:\Users\hp\Desktop\ManikHospital\ManikHospital\obj\Debug\ManikHospital.dll
+C:\Users\hp\Desktop\ManikHospital\ManikHospital\obj\Debug\ManikHospital.pdb

@@ -1,0 +1,132 @@
+﻿@model MedicalStore.Models.clsDailyOPDToken
+
+@{
+    ViewBag.Title = "Generate Token";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+@*<ol class="breadcrumb">
+    <li style="font-weight: bold;">OPD</li>
+    <li>@Html.ActionLink("List - Today OPD Token", "Index")</li>
+    <li>@Html.Raw("Add - Generate OPD Token")</li>
+</ol>*@
+
+<ul class="breadcrumb-bg">
+    <li><a href="../../DailyOPDToken/Index"><span class="fa fa-home"></span> List - Today OPD Token </a> </li>   
+    <li><a href="../../DailyOPDToken/GenerateToken"> <span class="fa fa-plus"></span> Generate OPD Token</a> </li>  
+    <li><a href="../../DailyOPDToken/SearchOPD"> <span class="fa fa-search"></span> Search OPD</a> </li>     
+</ul>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.OPDID)
+                        
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.Label("Token Number") </label>
+                                <div class="col-sm-6">
+                                    @Html.TextBox("OPDNumber", null, new { @class = "form-control", style = "font-size:25px; background-color:white; border:none;", @readonly = "true" })
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Status) *</label>
+                                <div class="col-sm-6">
+                                    @Html.RadioButtonFor(model => model.Status, "Checked", new { @checked = "checked" }) Checked &nbsp;&nbsp;
+                                    @Html.RadioButtonFor(model => model.Status, "Cancel") Cancel
+                                    <br />
+                                </div>
+                            </div>
+                        </div>  
+                        
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.PatientName) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.PatientName, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.ValidationMessageFor(model => model.PatientName, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                          
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.ContactNo) </label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control" })
+                                </div>                               
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Age) </label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Age, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.ValidationMessageFor(model => model.Age, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Sex) *</label>
+                                <div class="col-sm-6">
+                                    @Html.RadioButtonFor(model => model.Sex, "Male", new { @checked = "checked" }) Male &nbsp;&nbsp;
+                                    @Html.RadioButtonFor(model => model.Sex, "Female") Female
+                                    <br />
+                                </div>
+                            </div>
+                        </div>  
+                        
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.City) </label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                                    <br />
+                                </div>
+                            </div>
+                        </div>  
+                        
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Discount) </label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Discount, new { @Value = "0", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                          
+
+                          
+                        <div class="box-footer">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" name="btnType" value="Re-Print Token" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
+                          
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+

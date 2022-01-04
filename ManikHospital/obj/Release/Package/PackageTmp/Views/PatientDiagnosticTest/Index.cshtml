@@ -1,0 +1,165 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<MedicalStore.Models.clsPatientDiagnosticTest>
+
+@{
+    ViewBag.Title = "Patient Diagnostic Test";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Patient Diagnostic Test</li>
+    <li>@Html.Raw("Patient Diagnostic Test List")</li>
+    <li>@Html.ActionLink("Add New Patient Diagnostic Test", "AddNew")</li>
+</ol>
+<div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Patient Diagnostic Test Information</h3>
+                        <div class="box-tools pull-right">
+                            <div class="has-feedback">
+                                @using (Html.BeginForm())
+                                {
+                                    <input type="text" id="myInput" class="form-control input-sm" onkeyup="myFunction()" placeholder="Search Patient Name" title="Type in a name">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body text-left table-responsive no-padding">
+                        <table class="table table-bordered" id="myTable">
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.PatientName)</th>
+                                <th>@Html.DisplayNameFor(model => model.ContactNo)</th>
+                                <th>@Html.DisplayNameFor(model => model.TestID)</th>
+                                <th>@Html.DisplayNameFor(model => model.Charges)</th>
+                                <th>@Html.DisplayNameFor(model => model.Discount)</th>
+                                <th>@Html.DisplayNameFor(model => model.TestDate)</th>
+                                <th>@Html.DisplayNameFor(model => model.Payment)</th>
+                                <th class="btnFields">@Html.DisplayName("Print")</th>
+                                <th class="btnFields">@Html.DisplayName("Edit")</th>
+                                <th class="btnFields">@Html.DisplayName("Delete")</th>
+                            </tr>
+                            @{
+                                var a = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                a++;
+                                
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PatientName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ContactNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TestName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Charges)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Discount)
+                                    </td>
+                                    <td>
+                                        @item.TestDate.ToString("MM/dd/yyyy")
+                                    </td>
+                                    <td style="text-align: left; width: 100px;">
+                                        @{
+                                var pay = item.Payment;
+                                var useClass = "";
+                                if (pay != "Received")
+                                {
+                                    useClass = "label label-danger";
+                                }
+                                        }
+                                        <p class="@useClass">
+                                            @Html.DisplayFor(modelItem => item.Payment)
+                                        </p>
+                                    </td>
+                                    <td class="btnFields">
+                                       
+                                        @Html.ActionLink(" ", "Print", new { id = item.PatientTestID }, new { @class = "fa fa-print btnLarge text-info " })
+                                    </td>
+                                    <td class="btnFields">
+                                        @Html.ActionLink(" ", "Edit", new { id = item.PatientTestID }, new { @class = "fa fa-edit btnLarge text-info " })
+                                    </td>
+                                    <td class="btnFields">
+                                        <a href="#" class="fa fa-trash btnLarge text-danger" onclick="funDelete(this)" data-toggle="modal" data-target="#myModal" id="@item.PatientTestID"></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                    <div class="text-center">
+                        @{
+                            if (a == 0)
+                            {
+                            <b class="text-danger">No record found !</b>
+                            }
+                        }
+                    </div>
+                    <div style="float: right;">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+                    </div>
+                   @* <div class="box-footer clearfix" style="float: right;">
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </section>
+</div>
+
+<script>
+    function funDelete(a) {
+        var id = $(a).attr("id");
+        $("#DRecord").attr("href", "/PatientDiagnosticTest/Delete/" + id);
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Alert</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="DRecord" class="btn btn-info">YES</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

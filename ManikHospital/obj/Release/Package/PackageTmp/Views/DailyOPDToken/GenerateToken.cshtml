@@ -1,0 +1,145 @@
+﻿@model MedicalStore.Models.clsDailyOPDToken
+
+@{
+    ViewBag.Title = "Generate Token";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">OPD</li>
+    @*<li>@Html.Raw("List - Today OPD")</li>*@
+    <li>@Html.ActionLink("List - Today OPD Token", "Index")</li>
+    <li>@Html.Raw("Add - Generate OPD Token")</li>
+</ol>
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.DoctorID) *</label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownList("DoctorID", ViewBag.DdDoctor as SelectList, "Select Doctor", new { onchange = "this.form.submit();", @class = "form-control select2" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.ValidationMessageFor(model => model.DoctorID, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.PatientName) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.PatientName, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.ValidationMessageFor(model => model.PatientName, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                          
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.ContactNo) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.ValidationMessageFor(model => model.ContactNo, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Age) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Age, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.ValidationMessageFor(model => model.Age, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                          
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Discount) </label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Discount, new { @Value = "0", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                          
+                          
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right" style="font-size: 24px;">OPD No.</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBox("OPDNumber", null, new { @Value = (string)ViewBag.NewTokenNumbwe, @class = "form-control", style = "font-size:25px; background-color:white; border:none;", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+@*
+                          
+                       <div class="box-body">
+                            <div class="form-group">                                                        
+                                <div class="col-sm-12 text-align-center">
+                                    <h1 style="font-size:40px"> @Html.Label("OPDNumber", (string)ViewBag.NewTokenNumbwe) </h1>
+                                </div>                                  
+                            </div>
+                        </div>*@
+                          
+                        <div class="box-footer">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" name="btnType" value="Print Token" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
+                          
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@*<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box panel col-sm-12">
+                <br />                    
+
+                    <div class="col-md-6">
+                        <!-- small box -->
+                        <div class="box text-center" style="background-color: white; border: 1px solid #ccc;">
+                            <div>
+                                <h3> @Html.Label("Patient Token") </h3>
+                                
+                                <h1 style="font-size:60px"> @Html.Label("OPDNumber", (string)ViewBag.NewTokenNumbwe) </h1>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            @using(Html.BeginForm()){
+            <div class="col-xs-12 text-center">
+                <div class="col-sm-12">
+                    <input type="submit" name="submit1" value="Generate & Print" class="btn btn-success" />
+                    @Html.ActionLink("Cancel", "Index", "Users", null, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>*@

@@ -1,0 +1,87 @@
+﻿
+@model vtsMMC.Models.clsTransaction
+
+@{
+    ViewBag.Title = "Indoor Patient Payment";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Indoor Patient</li>
+    <li>@Html.ActionLink("List - Indoor Patient", "Index")</li>
+    <li>@Html.Raw("Indoor Patient Payment")</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+               <span style="color:red;"> <h3 class="box-title ">Your Remaining Amount is : <b>@ViewBag.RemainBalance</b></h3></span>
+                
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()                                                       
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.PatientID) *</label>
+                            <div class="col-sm-6">
+                                @Html.DropDownList("PatientID", ViewBag.DdPatient as SelectList, "Select Patient", new { @class = "form-control select2", @disabled = "disabled", style = "background-color:white;" })
+                                @Html.ValidationMessageFor(model => model.PatientID, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.TransDate) *</label>
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(model => model.TransDate, "{0:MM/dd/yyy}", new { @Value = DateTime.Now.Date.ToString("MM/dd/yyyy"), id = "Expensesdatepicker", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TransDate, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.PaymentType) *</label>
+                            <div class="col-sm-6">
+                                @Html.RadioButtonFor(model => model.PaymentType, "Deposit", new { @checked = "checked", onchange = "this.form.submit();" }) Deposit &nbsp;&nbsp;
+                                    @Html.RadioButtonFor(model => model.PaymentType, "Discount", new { onchange = "this.form.submit();" }) Discount 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right"> @Html.ValueFor(model => model.PaymentType) Amount *</label>
+                            <div class="col-sm-6"> 
+                                @Html.TextBoxFor(model => model.Amount, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Amount, null, new { @class = "text-danger errorSize" })
+                                @Html.ValidationMessageFor(model => model.Amount, null, new { @class = "text-danger errorSize" })
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="box-footer col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" name="submit1" value="Save" class="btn btn-info" />
+                                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Select2 -->
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>

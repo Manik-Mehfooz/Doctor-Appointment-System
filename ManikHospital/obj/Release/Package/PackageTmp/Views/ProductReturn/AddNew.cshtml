@@ -1,0 +1,163 @@
+﻿@model MedicalStore.Models.clsProductReturn
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight:bold;">Product Return</li>
+    <li>@Html.ActionLink("Detail", "Index")</li>
+    <li>@Html.Raw("Add New")</li>
+</ol>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Information</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.ProductID) *</label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownList("ProductID", ViewBag.DdProductName as SelectList, "select product", new { onchange="this.form.submit()", @class = "form-control select2" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.ProductID, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                       <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.ReturnType) *</label>
+                                <div class="col-sm-6">
+                                    @Html.RadioButtonFor(model => model.ReturnType, "Admit Patient", new { onchange="this.form.submit()", @checked = "checked" }) Admit Patient &nbsp;&nbsp;
+                                    @Html.RadioButtonFor(model => model.ReturnType, "OPD", new { onchange="this.form.submit()" }) OPD &nbsp;&nbsp;
+                                    @Html.RadioButtonFor(model => model.ReturnType, "Drug Agency", new { onchange="this.form.submit()" }) Drug Agency
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.ReturnType, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                              @{
+                        try
+                        {
+                            if (ViewBag.MyReturnType == "Admit Patient" || ViewBag.MyReturnType == "OPD")
+                            {
+                                 <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.SalesInvoiceNumber) *</label>
+                            }
+                            else
+                            {
+                                 <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.PurchaseInvoiceNumber) *</label>
+                            }
+                        }
+                        catch (Exception exp) { }
+                            }
+                               <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.InvoiceNumber, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.InvoiceNumber, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Quantity) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Quantity, new { id="txtQuantity", onchange="CalculateTotal()", @Value="0", type="number", @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.Quantity, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Price) *</label>
+                                <div class="col-sm-6">
+                                    @*@Html.TextBoxFor(model => model.Price, new { id="txtPrice", onchange="CalculateTotal()", @Value="0.00", type="number", @class = "form-control" })*@
+                                    @Html.TextBoxFor(model => model.Price, new { id="txtPrice", @Value=@ViewBag.MyPrice , @class = "form-control", @readonly="true", style="background-color:white;"})
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.Price, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Total) *</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.Total, new { id="txtTotal", type="number", @Value="0.00", @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.ValidationMessageFor(model => model.Total, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" name="submit1" value="Add" class="btn btn-info" />
+                                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Select2 -->
+<script src="@Url.Content("~/Resources/plugins/select2/select2.full.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+
+    function ProductChange() {
+    }
+
+    function CalculateTotal() {
+        var myQuantity = 0;
+        var myPrice = 0;
+        var quantity = document.getElementById("txtQuantity");
+        if (quantity.value.length <= 0) {
+            myQuantity = 0;
+            quantity.value = 0;
+        }
+        else {
+            myQuantity = parseInt(quantity.value);
+        }
+        var price = document.getElementById("txtPrice");
+        if (price.value.length <= 0 || price.value == "0.00") {
+            myPrice = parseInt(price.value);
+            price.value = "0.00";
+        }
+        else {
+            myPrice = parseInt(price.value);
+            price.value = parseInt(price.value) + ".00";
+        }
+
+        document.getElementById("txtTotal").value = (myPrice * myQuantity) + ".00";
+    }
+</script>

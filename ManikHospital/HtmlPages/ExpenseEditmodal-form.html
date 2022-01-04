@@ -1,0 +1,56 @@
+﻿<div class="modal-header bg-light-blue">
+    <button type="button" class="close" ng-click="cancel()" style="color: white; font-size: 25px;">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <h4><i class="fa fa-plus"></i>&nbsp;{{ModalUpdateMsg}}</h4>
+</div>
+
+<form name="form.userForm" ng-submit="UpdateRecord()" class="form-horizontal" novalidate>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Expense Type</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <select class="form-control" ng-model="userForm.eExpensesTypeID" >
+                    <option value="0">Select Expense Type</option>
+                    <option style="display:none" value="">Select</option>
+                    <option ng-repeat="dd in ddExpensesType" ng-selected="userForm.eExpensesTypeID==dd.ExpensesTypeID" value="{{dd.ExpensesTypeID}}">{{dd.ExpensesType1}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Expense Date</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="date" class="form-control" ng-model="userForm.eExpenseDate" id="Expensesdatepicker" placeholder="Enter Expense Date" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Amount</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="number" class="form-control" ng-model="userForm.eAmount" placeholder="Enter Amount" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Given By</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eGivenBy" placeholder="Enter Given By" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Given To</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" ng-model="userForm.eGivenTo" placeholder="Enter Given To" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3 col-md-3 col-lg-3">Remarks</label>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                <textarea class="form-control" ng-model="userForm.eRemarks" placeholder="Enter Remarks"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-disabled="form.userForm.$dirty && form.userForm.$invalid">
+            <i class="fa fa-refresh"></i>&nbsp;Update</button>
+        <button class="btn btn-danger" ng-click="cancel()"><i class="fa fa-close"></i>&nbsp;Cancel</button>
+    </div>
+</form>

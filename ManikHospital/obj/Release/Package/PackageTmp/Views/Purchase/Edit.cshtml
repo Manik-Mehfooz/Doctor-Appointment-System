@@ -1,0 +1,112 @@
+﻿@model MedicalStore.Models.clsPurchaseMaster
+
+@{
+    ViewBag.Title = "Purchase Medicine";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li style="font-weight: bold;">Purchase Medicine</li>
+    <li>@Html.ActionLink("List", "Index")</li>
+    <li>@Html.Raw("Edit")</li>
+</ol>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Information</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.Hidden("EnteredBy", Session["UserName"])   
+                        @Html.HiddenFor(model => model.PurchaseID)                                       
+                        
+                        <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.InvioceNumber) *</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.InvioceNumber, new { @class = "form-control", ReadOnly = true })
+                                    @Html.ValidationMessageFor(model => model.InvioceNumber, null, new { @class = "text-danger errorSize" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.DrugAgency) *</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.DrugAgency, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.AgencyInvoiceNo) *</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.AgencyInvoiceNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.AgencyInvoiceNo, null, new { @class = "text-danger errorSize" })
+                                </div>
+                            </div>
+                        </div>                             
+                      
+                        <div class="box-body col-md-6 col-sm-12 bArea">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label text-right">@Html.LabelFor(model => model.InvoiceDate) *</label>
+                                <div class="col-sm-8">
+                                    @*@string.Format("{0:MM/dd/yyyy}", Html.TextBoxFor(model => model.InvoiceDate, new { id = "Enterdatepicker", @class = "form-control" }))*@
+                                    @Html.TextBoxFor(model => model.InvoiceDate, "{0:MM/dd/yyyy}", new { id = "Enterdatepicker", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.InvoiceDate, null, new { @class = "text-danger errorSize" })
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="box-body col-md-12 col-sm-12 bArea">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label text-right">@Html.LabelFor(model => model.Remarks) *</label>
+                                <div class="col-sm-10">
+                                    @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                       
+                        
+                       
+                        <div class="box-footer col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" name="submit1" value="Update" class="btn btn-info" />
+                                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                                </div>
+                            </div>
+                        </div>@*
+                        
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(model => model.ProductName,  new { htmlAttributes = new { id = "productname", @class = "form-control" } })
+
+                        </div> 
+                        @Html.DropDownList("ProductID", ViewBag.DdProduct as SelectList,"Select Product", new { @class = "form-control" })*@
+                        
+                    }
+                    <div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

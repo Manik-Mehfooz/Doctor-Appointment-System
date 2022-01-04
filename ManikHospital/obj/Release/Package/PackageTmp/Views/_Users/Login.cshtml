@@ -1,0 +1,79 @@
+﻿@model MedicalStore.Models.clsUsers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Maidah Medical Store | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+
+    <link rel="stylesheet" href="@Url.Content("~/Resources/bootstrap/css/bootstrap.min.css")" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="@Url.Content("~/Resources/dist/css/AdminLTE.min.css")" />
+    <!-- iCheck -->
+    <link rel="stylesheet" href="@Url.Content("~/Resources/plugins/iCheck/square/blue.css")" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition login-page" style="padding-top:30px;">
+    <div class="login-box" >
+        <div class="login-logo" >
+            <a> <img src="../images/Maidah%20Medical%20Center%201%20Low.png" width="300px" height="120px" /></a>
+        </div>
+        <div class="box box-primary">
+            <br />
+            <div class="box-body box-profile">               
+                <img class="profile-user-img img-responsive img-circle" src="@Url.Content("../images/Maidah%20Medical%20Center%201%20Low.png")" alt="User profile picture">
+                <hr />
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(model => model.UserName, new { placeholder="Username", @class = "form-control" })
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        @Html.ValidationMessageFor(model => model.UserName, null, new { @class = "text-danger small" })
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.PasswordFor(model => model.Password, new { placeholder="Password", @class = "form-control" })
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        <small>@Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })</small>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="lockscreen-footer text-center">
+                Copyright &copy; @System.DateTime.Now.Year <b><a href="http://visualtechsolution.com" class="text-black">Visual Tech Solutions</a></b><br>
+                All rights reserved
+                <br /><br />
+                <small class="text-danger">@ViewBag.ErrorMessage</small>
+            </div><br />
+        </div>
+    </div>
+    <script src="@Url.Content("~/Resources/plugins/jQuery/jquery-2.2.3.min.js")"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="@Url.Content("~/Resources/bootstrap/js/bootstrap.min.js")"></script>
+    <!-- iCheck -->
+    <script src="@Url.Content("~/Resources/plugins/iCheck/icheck.min.js")"></script>
+</body>
+</html>
